@@ -1,0 +1,37 @@
+{
+  "name": "practice-to-perfect",
+  "private": true,
+  "scripts": {
+    "start": "./bin/webpack-dev-server",
+    "test": "node_modules/.bin/karma start karma.conf.js"
+  },
+  "dependencies": {
+    "@rails/webpacker": "3.4",
+    "babel-preset-react": "^6.24.1",
+    "prop-types": "^15.6.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "resolve-url-loader": "^2.3.0",
+    "semantic-ui-css": "^2.3.1",
+    "semantic-ui-react": "^0.79.1"
+  },
+  "devDependencies": {
+    "enzyme": "^3.3.0",
+    "jasmine-ajax": "^3.3.1",
+    "jasmine-core": "^3.1.0",
+    "jasmine-enzyme": "^6.0.0",
+    "karma": "^2.0.2",
+    "karma-coverage": "^1.1.1",
+    "karma-jasmine": "^1.1.1",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-spec-reporter": "^0.0.32",
+    "karma-webpack": "^3.0.0",
+    "phantomjs-prebuilt": "^2.1.16",
+    "react-addons-test-utils": "^15.6.2",
+    "webpack-cli": "^2.0.15",
+    "webpack-dev-server": "^2.11.1"
+  }
+}

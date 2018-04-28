@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Practice To Perfect</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", media: "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= javascript_pack_tag "ptpApp/index" %>
+    <%= stylesheet_pack_tag "ptpApp/assets/stylesheets/app" %>
+    <%= stylesheet_pack_tag "ptpApp/index" %>
+  </head>
+  <body>
+    <%= yield %>
+  </body>
+</html>
