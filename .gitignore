@@ -32,7 +32,6 @@ yarn-debug.log*
 
 # Ignore coveralls' code coverage report and repo token file
 /coverage
-.coveralls.yml
 
 # Ignore environment file
 .env
