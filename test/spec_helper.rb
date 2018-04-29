@@ -1,3 +1,6 @@
+require 'coveralls'
+Coveralls.wear!('rails')
+
 RSpec.configure do |config|
   #react_on_rails addition
   config.example_status_persistence_file_path = "spec/examples.txt"
