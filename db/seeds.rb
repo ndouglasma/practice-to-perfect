@@ -1,7 +1,11 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+Question.create(body: "Talk about a time when you had to work closely with someone whose personality was very different from yours.")
+Question.create(body: "Give me an example of a time you faced a conflict while working on a team. How did you handle that?")
+Question.create(body: "Describe a time when you struggled to build a relationship with someone important. How did you eventually overcome that?")
+Question.create(body: "We all make mistakes we wish we could take back. Tell me about a time you wish you’d handled a situation differently with a colleague.")
+Question.create(body: "Tell me about a time you needed to get information from someone who wasn’t very responsive. What did you do?")
+Question.create(body: "Tell me about a time you were under a lot of pressure. What was going on, and how did you get through it?")
+Question.create(body: "Tell me about the first job you’ve ever had. What did you do to learn the ropes?")
+Question.create(body: "Tell me about a time you failed. How did you deal with the situation?")
+Question.create(body: "Describe a long-term project that you managed. How did you keep everything moving along in a timely manner?")
+Question.create(body: "Tell me about a successful presentation you gave and why you think it was a hit.")
+Question.create(body: "Tell me about your proudest professional accomplishment.")
