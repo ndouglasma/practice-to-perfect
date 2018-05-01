@@ -1,13 +1,19 @@
-import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+//External Dependencies
+import React from 'react';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
-import LandingPage from "./components/landingPage";
+//Internal Dependencies
+import  Layout from './components/layout/layout';
+import Login from './components/user_auth/login';
+import Overview from './components/overview/overview';
 
 const App = (props) => (
-  <Router>
-    <div>
-      <Route exact path="/" component={LandingPage} />
-    </div>
+  <Router history={ browserHistory }>
+    <Route path='/' component={ Layout }>
+      <IndexRoute component={ Login } />
+      <Route path='login' component={ Login } />
+      <Route path='overview' component={ Overview } />      
+    </Route>
   </Router>
 );
 
