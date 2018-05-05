@@ -1,11 +1,9 @@
 //External Dependencies
 import React from 'react';
-import { Dropdown, Icon } from 'semantic-ui-react';
+import { Dropdown, Header, Icon } from 'semantic-ui-react';
 
 const trigger = (
-  <span id='display-name'>
-    <Icon name='user' /> Hello, Natalie
-  </span>
+  <span id='display-name'><Icon name='user' /><Header as='h4'>Hello, Natalie</Header></span>
 );
 
 const options = [

@@ -1,25 +1,21 @@
 //External Dependencies
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Grid, Image } from 'semantic-ui-react';
+import { Grid, Header as SRHeader, Image } from 'semantic-ui-react';
 import { IndexLink, Link } from 'react-router';
 import { connect } from 'react-redux';
 
 //Internal Dependencies
 import ptpLogo from '../../assets/images/header/ptp_logo.png';
-import overview_header from '../../assets/images/header/overview_header.png';
-import start_interview_header from '../../assets/images/header/start_interview_header.png';
-import my_responses_header from '../../assets/images/header/my_responses_header.png';
 import UserVerticalMenu from './user_vertical_menu';
 
 class Header extends React.Component {
   render() {
     const HeaderAuthenticated = () => (
-      <Grid columns='equal'>
-        <Grid.Column><Image src={ overview_header } size='small' /></Grid.Column>
-        <Grid.Column><Image src={ start_interview_header } size='small' /></Grid.Column>
-        <Grid.Column><Link to={ 'start_interview' }><Button primary><Image src={ my_responses_header } size='small' /></Link></Grid.Column>
-        <Grid.Column><UserVerticalMenu /></Grid.Column>
+      <Grid textAlign='center' verticalAlign='middle'>
+        <Grid.Column width={4}><SRHeader as='h4'>Overview</SRHeader></Grid.Column>
+        <Grid.Column width={4}><Link to='/start_interview'><SRHeader as='h4'>Start an Interview</SRHeader></Link></Grid.Column>
+        <Grid.Column width={4}><SRHeader as='h4'>My Responses</SRHeader></Grid.Column>
+        <Grid.Column width={4}><UserVerticalMenu /></Grid.Column>
       </Grid>
     );
 
@@ -38,9 +34,6 @@ class Header extends React.Component {
   };
 };
 
-Header.propTypes = {
-	currentLocation: PropTypes.string
-};
 
 const mapStateToProps = (state) => {
 	return {

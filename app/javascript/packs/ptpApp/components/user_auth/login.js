@@ -3,9 +3,6 @@ import React from 'react';
 import { Link, browserHistory } from 'react-router';
 import { Button, Divider, Icon, Segment } from 'semantic-ui-react';
 
-//Internal Dependencies
-import PropTypes from 'prop-types';
-
 class Login extends React.Component {
 	constructor(props){
     super(props)
@@ -30,8 +27,5 @@ class Login extends React.Component {
 		);
 	}
 }
-
-Login.propTypes = {
-};
 
 export default Login;

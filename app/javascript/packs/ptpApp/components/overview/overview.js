@@ -1,6 +1,5 @@
 //External Dependencies
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 
 class Overview extends React.Component {
@@ -18,8 +17,5 @@ class Overview extends React.Component {
 		);
 	}
 }
-
-Overview.propTypes = {
-};
 
 export default Overview;

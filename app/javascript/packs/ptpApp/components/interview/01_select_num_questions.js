@@ -1,8 +1,6 @@
+//External Dependencies
 import React from 'react';
 import { Card } from 'semantic-ui-react';
-
-//Internal Dependencies
-import QuestionCardGroup from './01_select_num_questions';
 
 const QuestionCardGroup = () => (
   <Card.Group itemsPerRow={4}>

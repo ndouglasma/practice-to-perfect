@@ -1,6 +1,6 @@
 //External Dependencies
 import React from 'react';
-import { render } from 'react-dom';
+import { render } from "react-dom";
 import { browserHistory, IndexRoute, Route, Router } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
@@ -67,9 +67,9 @@ const App = (props) => (
   </Provider>
 );
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   render(
     <App />,
-    document.getElementById('ptp-app')
+    document.getElementById("ptp-app")
   )
 });

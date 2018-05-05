@@ -1,3 +1,4 @@
+//External Dependencies
 import React from 'react';
 import { Card } from 'semantic-ui-react';
 
@@ -14,14 +15,11 @@ class StartInterview extends React.Component {
 	render() {
 		return (
 			<div id='start-interview'>
-				<h1>Start Interview</h1>
+				<h1>Start an Interview</h1>
 				<QuestionCardGroup />
 			</div>
 		);
 	}
 }
-
-Overview.propTypes = {
-};
 
 export default StartInterview;
