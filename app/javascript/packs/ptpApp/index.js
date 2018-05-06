@@ -1,6 +1,6 @@
 //External Dependencies
 import React from 'react';
-import { render } from "react-dom";
+import { render } from 'react-dom';
 import { browserHistory, IndexRoute, Route, Router } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
@@ -15,6 +15,7 @@ import Layout from './components/layout/layout';
 import Login from './components/user_auth/login';
 import Overview from './components/overview/overview';
 import StartInterview from './components/interview/start_interview';
+import SelectNumQuestions from './components/interview/01_select_num_questions';
 
 // import rootSaga from '../sagas/index';
 import rootReducer from './reducers/index';
@@ -61,15 +62,22 @@ const App = (props) => (
         <IndexRoute component={ Login } />
         <Route path='login' component={ Login } />
         <Route path='overview' component={ Overview } />
-        <Route path='start_interview' component={ StartInterview } />
+        <Route path='start_interview' component={ StartInterview }>
+					<IndexRoute component={ SelectNumQuestions } />
+					<Route path='select_num_questions' component={ SelectNumQuestions } />
+				</Route>
       </Route>
     </Router>
   </Provider>
 );
 
-document.addEventListener("DOMContentLoaded", () => {
-  render(
-    <App />,
-    document.getElementById("ptp-app")
-  )
+document.addEventListener('DOMContentLoaded', () => {
+  let reactElement = document.getElementById('ptp-app')
+
+  if (reactElement) {
+    render(
+      <App />,
+      reactElement
+    )
+  }
 });

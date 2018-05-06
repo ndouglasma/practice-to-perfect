@@ -3,6 +3,7 @@ import { combineReducers } from 'redux-immutable';
 
 //Internal Dependencies*/
 import routerReducer from './router_reducer';
+import interviewReducer from './interview_reducer';
 
 /**
  * Combine reducers into root reducer and create store.
@@ -11,7 +12,9 @@ import routerReducer from './router_reducer';
  * instead of react-router-redux's routerReducer
  */
 const rootReducer = combineReducers({
-	routing: routerReducer
+	routing: routerReducer,
+	interview: interviewReducer
+
 });
 
 export default rootReducer;
