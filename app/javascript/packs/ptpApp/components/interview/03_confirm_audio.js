@@ -53,7 +53,7 @@ class ConfirmAudio extends React.Component {
         id: Math.floor(Math.random()*90000) + 10000
       }
 
-      this.setState({ uploading: true });
+      this.setState({ uploadSuccess: true, uploading: false });
 
       // S3Upload(params)
       // .then((success) => {
@@ -80,14 +80,13 @@ class ConfirmAudio extends React.Component {
 		return (
 			<div id ='confirm-audio'>
 				<h2>Let's confirm your audio</h2>
-				<Modal trigger={this.state.uploadSuccess}>
-					<Modal.Content>Upload success!</Modal.Content>
-				</Modal>
 				<div><Webcam src={this.state.src}/></div>
 				{this.state.uploading ?
 					<div>Uploading...</div> : null}
-				<div><button onClick={this.startRecord}>Start Record</button></div>
-				<div><button onClick={this.stopRecord}>Stop Record</button></div>
+				<Button onClick={this.startRecord}>Start Record</Button>
+				<Modal trigger={<Button onClick={this.stopRecord}>Stop Record</Button>}>
+					<Modal.Content>Upload success!</Modal.Content>
+				</Modal>
 			</div>
     );
   };
