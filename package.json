@@ -18,6 +18,7 @@
     "react-redux": "^5.0.7",
     "react-router": "3.2.1",
     "react-router-redux": "^4.0.8",
+    "recordrtc": "^5.4.6",
     "redux": "^4.0.0",
     "redux-immutable": "^4.0.0",
     "redux-saga": "^0.16.0",
@@ -42,6 +43,7 @@
     "phantomjs-prebuilt": "^2.1.16",
     "react-addons-test-utils": "^15.6.2",
     "redux-logger": "^3.0.6",
+    "redux-mock-store": "^1.5.1",
     "webpack-cli": "^2.0.15",
     "webpack-dev-server": "^2.11.1"
   }
