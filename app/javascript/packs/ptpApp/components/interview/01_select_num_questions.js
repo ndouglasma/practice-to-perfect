@@ -1,20 +1,37 @@
-//External Dependencies
+// External Dependencies
 import React from 'react';
 import { Button, Grid, Header } from 'semantic-ui-react';
+import { connect } from 'react-redux';
 
-const SelctNumQuestions = (props) => {
-  const numQuestions=[1,2,3,4];
+// Internal Dependencies
+import { setSelectedNumQuestions } from "../../actions/interview_action";
 
-  let numQuestionButtons = numQuestions.map(num => {
+class SelectNumQuestions extends React.Component {
+	constructor(props){
+    super(props)
+    this.state = {
+    }
+	};
+
+  toggleNumQuestionsSelect = (numQuestions) => {
+    console.log(numQuestions);
+    this.props.setSelectedNumQuestions(numQuestions);
+  };
+
+  render() {
+    const numQuestions=[1,2,3,4];
+
+    let numQuestionButtons = numQuestions.map(num => {
       let active=false;
-      if (props.selectedNumQuestions === num) {
+      if (this.props.selectedNumQuestions === num) {
         active = true;
       }
 
       let handleClick = () => {
         console.log(active);
-        console.log(props.selectedNumQuestions);
-        props.toggleNumQuestionsSelect(num) }
+        console.log(this.props.selectedNumQuestions);
+        this.toggleNumQuestionsSelect(num);
+      }
 
       return(
         <Grid.Column key={ num }>
@@ -28,16 +45,30 @@ const SelctNumQuestions = (props) => {
       );
     });
 
-  return (
-    <Grid container columns={4} id='question-button-group'>
-      { numQuestionButtons }
-    </Grid>
-  );
+		return (
+			<div id ='select-num-questions'>
+				<h2>Pick the number of questions you want for the interview.</h2>
+				<br />
+				<Grid container columns={4} id='question-button-group'>
+					{ numQuestionButtons }
+				</Grid>
+			</div>
+    );
+  };
 };
 
-export default SelctNumQuestions;
+const mapStateToProps = (state) => {
+	return {
+		selectedNumQuestions: state.get('interview').get('selectedNumQuestions')
+	};
+};
 
-// <QuestionButtonGroup
-// 	selectedNumQuestions={ this.state.selectedNumQuestions }
-// 	toggleNumQuestionsSelect={ this.toggleNumQuestionsSelect }
-// 	/>
+const mapDispatchToProps = (dispatch) => {
+	return {
+		setSelectedNumQuestions: (numQuestions) => {
+			dispatch(setSelectedNumQuestions(numQuestions));
+		}
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SelectNumQuestions);

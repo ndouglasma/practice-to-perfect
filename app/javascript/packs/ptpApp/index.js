@@ -11,11 +11,14 @@ import { Provider } from 'react-redux';
 import 'semantic-ui-css/semantic.min.css';
 
 //Internal Dependencies
+
 import Layout from './components/layout/layout';
 import Login from './components/user_auth/login';
 import Overview from './components/overview/overview';
 import StartInterview from './components/interview/start_interview';
 import SelectNumQuestions from './components/interview/01_select_num_questions';
+import SelectCategories from './components/interview/02_select_categories';
+import ConfirmAudio from './components/interview/03_confirm_audio';
 
 // import rootSaga from '../sagas/index';
 import rootReducer from './reducers/index';
@@ -65,6 +68,8 @@ const App = (props) => (
         <Route path='start_interview' component={ StartInterview }>
 					<IndexRoute component={ SelectNumQuestions } />
 					<Route path='select_num_questions' component={ SelectNumQuestions } />
+					<Route path='select_categories' component={ SelectCategories } />
+					<Route path='confirm_audio' component={ ConfirmAudio } />
 				</Route>
       </Route>
     </Router>
