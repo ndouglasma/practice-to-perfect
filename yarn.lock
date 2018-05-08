@@ -6998,9 +6998,23 @@ react-dom@^16.3.2:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
+react-ga@^2.2.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/react-ga/-/react-ga-2.5.0.tgz#fbba2b33d41ce727f7d4cf383d54dbbfbf96c507"
+  optionalDependencies:
+    prop-types "^15.6.0"
+    react "^15.6.2 || ^16.0"
+
 react-is@^16.3.2:
   version "16.3.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.3.2.tgz#f4d3d0e2f5fbb6ac46450641eb2e25bf05d36b22"
+
+react-mic@^9.1.2:
+  version "9.1.2"
+  resolved "https://registry.yarnpkg.com/react-mic/-/react-mic-9.1.2.tgz#ce57793dbb49145296c868b3d01496e558ecd982"
+  dependencies:
+    prop-types "^15.5.10"
+    react-ga "^2.2.0"
 
 react-reconciler@^0.7.0:
   version "0.7.0"
@@ -7047,7 +7061,7 @@ react-test-renderer@^16.0.0-0:
     prop-types "^15.6.0"
     react-is "^16.3.2"
 
-react@^16.3.2:
+"react@^15.6.2 || ^16.0", react@^16.3.2:
   version "16.3.2"
   resolved "https://registry.yarnpkg.com/react/-/react-16.3.2.tgz#fdc8420398533a1e58872f59091b272ce2f91ea9"
   dependencies:

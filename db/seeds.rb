@@ -1,3 +1,5 @@
+nat = User.create(github_name: 'Natalie Douglas', github_id: 37456880, github_login: 'ndouglasma', github_avatar_url: 'https://avatars3.githubusercontent.com/u/37456880?v=4')
+
 behave = QuestionCategory.create(name: 'Behavioral')
 problem = QuestionCategory.create(name: 'Problem-solving')
 motivate = QuestionCategory.create(name: 'Motivational')

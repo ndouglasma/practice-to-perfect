@@ -4,13 +4,13 @@ module AwsS3Helper
   NO_SUCH_BUCKET = "The bucket '%s' does not exist!"
 
   # Get an Amazon S3 resource
-  s3_client = Aws::S3::Resource.new(region: 'us-east-1')
-  ptp_bucket = ENV["S3_BUCKET"]
+  s3_client = Aws::S3::Resource.new(region: ENV['AWS_REGION'])
+  ptp_bucket = ENV['S3_BUCKET_LAUNCH_ACADEMY']
 
   def s3_bucket_exist?(input_bucket)
     bucket_exists = false
     begin
-      s3_client_response = s3_client.head_bucket({bucket: ptp_bucket, use_accelerate_endpoint: false})
+      s3_client_response = s3_client.head_bucket({bucket: input_bucket, use_accelerate_endpoint: false})
       bucket_exists = true
       rescue
     end

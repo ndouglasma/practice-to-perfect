@@ -45,14 +45,14 @@ ActiveRecord::Schema.define(version: 2018_05_07_202333) do
 
   create_table "users", force: :cascade do |t|
     t.integer "github_id"
-    t.string "github_handle"
+    t.string "github_login"
     t.string "github_avatar_url"
-    t.string "name"
+    t.string "github_name"
     t.integer "sign_in_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["github_handle"], name: "index_users_on_github_handle", unique: true
     t.index ["github_id"], name: "index_users_on_github_id", unique: true
+    t.index ["github_login"], name: "index_users_on_github_login", unique: true
   end
 
 end

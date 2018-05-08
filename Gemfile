@@ -7,6 +7,8 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'aws-sdk-rails'
 gem 'aws-sdk-s3'
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'carrierwave-aws'
+gem 'httparty'
 gem 'jbuilder', '~> 2.5'
 gem "omniauth-github"
 gem 'pg', '>= 0.18', '< 2.0'
