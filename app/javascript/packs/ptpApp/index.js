@@ -15,12 +15,12 @@ import 'semantic-ui-css/semantic.min.css';
 import Layout from './components/layout/layout';
 import Login from './components/user_auth/login';
 import Overview from './components/overview/overview';
-import SetUpInterview from './components/interview/set_up_interview';
-import SelectNumQuestions from './components/interview/01_select_num_questions';
-import SelectCategories from './components/interview/02_select_categories';
-import ConfirmAudio from './components/interview/03_confirm_audio';
-import Countdown from './components/interview/04_countdown';
-import Countdown2 from './components/interview/countdown2';
+import SetUpInterview from './components/set_up_interview/set_up_interview';
+import SelectNumQuestions from './components/set_up_interview/01_select_num_questions';
+import SelectCategories from './components/set_up_interview/02_select_categories';
+import ConfirmAudio from './components/set_up_interview/03_confirm_audio';
+import Countdown from './components/set_up_interview/04_countdown';
+import Countdown2 from './components/set_up_interview/countdown2';
 
 // import rootSaga from '../sagas/index';
 import rootReducer from './reducers/index';

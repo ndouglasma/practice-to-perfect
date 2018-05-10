@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { ReactMic } from 'react-mic';
 
 // Internal Dependencies
-import { setSelectedNumQuestions } from '../../actions/interview_action';
+import { setSelectedNumQuestions } from '../../actions/set_up_interview_action';
 
 const hasGetUserMedia = !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
 	navigator.mozGetUserMedia || navigator.msGetUserMedia);

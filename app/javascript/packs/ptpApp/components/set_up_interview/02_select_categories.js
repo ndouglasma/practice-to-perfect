@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { browserHistory  } from 'react-router';
 
 // Internal Dependencies
-import { setSelectedCategories } from "../../actions/interview_action";
+import { setSelectedCategories } from "../../actions/set_up_interview_action";
 
 class SelectCategories extends React.Component {
 	constructor(props){
@@ -153,7 +153,7 @@ class SelectCategories extends React.Component {
 
 const mapStateToProps = (state) => {
 	return {
-		selectedCategories: state.get('interview').get('selectedCategories')
+		selectedCategories: state.get('set_up_interview').get('selectedCategories')
 	};
 };
 
