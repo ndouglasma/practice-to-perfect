@@ -27,7 +27,7 @@ class SelectNumQuestions extends React.Component {
 		else if (clickAction === 'next') {
 			if (this.state.selectedNum > 0) {
 				this.props.setSelectedNumQuestions(this.state.selectedNum);
-				browserHistory.push('/start_interview/select_categories');
+				browserHistory.push('/set_up_interview/select_categories');
 			}
 			else {
 				this.setState({

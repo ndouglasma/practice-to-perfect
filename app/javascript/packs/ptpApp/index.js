@@ -15,10 +15,12 @@ import 'semantic-ui-css/semantic.min.css';
 import Layout from './components/layout/layout';
 import Login from './components/user_auth/login';
 import Overview from './components/overview/overview';
-import StartInterview from './components/interview/start_interview';
+import SetUpInterview from './components/interview/set_up_interview';
 import SelectNumQuestions from './components/interview/01_select_num_questions';
 import SelectCategories from './components/interview/02_select_categories';
 import ConfirmAudio from './components/interview/03_confirm_audio';
+import Countdown from './components/interview/04_countdown';
+import Countdown2 from './components/interview/countdown2';
 
 // import rootSaga from '../sagas/index';
 import rootReducer from './reducers/index';
@@ -65,11 +67,13 @@ const App = (props) => (
         <IndexRoute component={ Login } />
         <Route path='login' component={ Login } />
         <Route path='overview' component={ Overview } />
-        <Route path='start_interview' component={ StartInterview }>
+        <Route path='set_up_interview' component={ SetUpInterview }>
 					<IndexRoute component={ SelectNumQuestions } />
 					<Route path='select_num_questions' component={ SelectNumQuestions } />
 					<Route path='select_categories' component={ SelectCategories } />
 					<Route path='confirm_audio' component={ ConfirmAudio } />
+					<Route path='countdown' component={ Countdown } />
+					<Route path='countdown2' component={ Countdown2 } />
 				</Route>
       </Route>
     </Router>

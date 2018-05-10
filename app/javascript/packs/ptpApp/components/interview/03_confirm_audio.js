@@ -3,6 +3,7 @@ import React from 'react';
 import { Button, Grid, Header, Icon, Message } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { ReactMic } from 'react-mic';
+import { browserHistory  } from 'react-router';
 
 // Internal Dependencies
 
@@ -53,22 +54,8 @@ class ConfirmAudio extends React.Component {
 		if (clickAction === 'back') {
 			browserHistory.goBack();
 		}
-		else if (clickAction === 'clear') {
-			this.setState({
-				categories: [],
-				showErrorStatus: false
-			 });
-		}
 		else if (clickAction === 'next') {
-			if (this.state.categories.length > 0) {
-				this.props.setSelectedCategories(this.state.categories);
-				browserHistory.push('/start_interview/confirm_audio');
-			}
-			else {
-				this.setState({
-					showErrorStatus: true
-				});
-			}
+			browserHistory.push('/set_up_interview/countdown');
 		}
 	};
 
@@ -132,7 +119,6 @@ class ConfirmAudio extends React.Component {
 		);
 
 		let handleBackClick = () => { this.handleButtonClick('back'); }
-		let handleClearClick = () => { this.handleButtonClick('clear'); }
 		let handleNextClick = () => { this.handleButtonClick('next'); }
 
 		return (
@@ -171,6 +157,10 @@ class ConfirmAudio extends React.Component {
 					</Button>
 				</Grid.Row>
 				<Grid.Row>
+					<Button icon labelPosition='left' className='nav-button' onClick={ handleBackClick }>
+						Back
+						<Icon name='left arrow' />
+					</Button>
 					<Button icon labelPosition='right' className='nav-button next' onClick={ handleNextClick }>
 						Next
 						<Icon name='right arrow' />

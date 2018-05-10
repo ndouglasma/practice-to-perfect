@@ -29,7 +29,7 @@ class SelectCategories extends React.Component {
 		else if (clickAction === 'next') {
 			if (this.state.selectedCategories.length > 0) {
 				this.props.setSelectedCategories(this.state.selectedCategories);
-				browserHistory.push('/start_interview/confirm_audio');
+				browserHistory.push('/set_up_interview/confirm_audio');
 			}
 			else {
 				this.setState({

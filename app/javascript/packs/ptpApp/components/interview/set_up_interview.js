@@ -2,7 +2,7 @@
 import React from 'react';
 import { Grid } from 'semantic-ui-react';
 
-class StartInterview extends React.Component {
+class SetUpInterview extends React.Component {
 	constructor(props){
     super(props)
     this.state = {
@@ -11,9 +11,9 @@ class StartInterview extends React.Component {
 
 	render() {
 		return (
-			<Grid id='start-interview'>
+			<Grid id='set-up-interview'>
 				<Grid.Row>
-					<h1>Start an Interview</h1>
+					<h1>Set Up Your Interview</h1>
 					<br/>
 					<br/>
 				</Grid.Row>
@@ -25,4 +25,4 @@ class StartInterview extends React.Component {
 	}
 };
 
-export default StartInterview;
+export default SetUpInterview;
