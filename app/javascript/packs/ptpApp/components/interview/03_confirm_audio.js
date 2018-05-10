@@ -1,136 +1,181 @@
 // External Dependencies
 import React from 'react';
-import { Button, Grid, Header, Icon, Modal } from 'semantic-ui-react';
+import { Button, Grid, Header, Icon, Message } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { ReactMic } from 'react-mic';
 
 // Internal Dependencies
-import { setSelectedNumQuestions } from '../../actions/interview_action';
-
-const hasGetUserMedia = !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
-	navigator.mozGetUserMedia || navigator.msGetUserMedia);
 
 class ConfirmAudio extends React.Component {
 	constructor(props){
     super(props)
     this.state = {
+			microphoneAccess: false,
 			recordAudio: false,
-			blobAudio: null,
 			blobURL: null,
-			isRecording: false
+			showErrorStatus: false,
+			showSuccessStatus: false,
+			errorMsg: ''
     };
 	};
 
-		startRecording = () => {
-	    this.setState({
-	      recordAudio: true,
-	      isRecording: true
-	    });
-	  }
-
-	  stopRecording = () => {
-	    this.setState({
-	      recordAudio: false,
-	      isRecording: false
-	    });
-	  }
-
-		onStart = () => {
-	    console.log('You can tap into the onStart callback');
-	  }
-
-	  onStop = (blobAudio) => {
-			console.log(blobAudio);
+	startRecording = () => {
+		if (this.state.microphoneAccess === true) {
 			this.setState({
-				blobAudio: blobAudio,
-				blobURL: blobAudio.blobURL
+				recordAudio: true,
+				showErrorStatus: false
 			});
+		}
+	}
 
-			this.onUpload();
-	  };
+	stopRecording = () => {
+		this.setState({
+			recordAudio: false
+		});
+	}
 
-		onUpload= () => {
-			console.log(this.state.blobAudio);
+	onStart = () => {
+		console.log('You can tap into the onStart callback');
+	}
 
-			//save audio blob in FormData
-			let formData  = new FormData();
-			console.log(typeof formData);
-			formData.append('size', this.state.blobAudio.blob.size);
-			formData.append('type', this.state.blobAudio.blob.type);
-			formData.append('blobURL', this.state.blobAudio.blobURL);
-			formData.append('startTime', this.state.blobAudio.startTime);
-			formData.append('stopTime', this.state.blobAudio.stopTime);
+	onStop = (blobAudio) => {
+		// console.log(blobAudio);
+		this.setState({
+			blobURL: blobAudio.blobURL,
+			showErrorStatus: false,
+			showSuccessStatus: true
+		});
+	};
 
-			for (var pair of formData.entries()) {
-				console.log(pair[0]+ ', '+ pair[1]);
-			};
+	handleButtonClick = (clickAction) => {
+		console.log(clickAction);
 
-			console.log(this.state.blobAudio.blob.size);
-			// debugger;
-			fetch('/api/v1/user_response', {
-				credentials: 'same-origin',
-			  method: 'POST',
-			  body: formData,
-				headers: {
-					'Accept': 'application/json, */*',
-			    'Content-Type': 'multipart/form-data'
-			  },
-			}).then(response => {
-				if (response.ok) {
-					return response;
-				} else {
-					let errorMessage = `${response.status} (${response.statusText})`,
-							error = new Error(errorMessage);
-					throw(error);
-				}
-			})
-			.then(response => response.json())
-			.then(body => {
-				// this.setState({ fortune: body.fortune.text,
-				// newFortune: '' });
-				console.log('MADE IT HERE');
-			})
-			.catch(error => console.error(`Error in fetch: ${error.message}`));
-		};
-
-	componentDidMount = () => {
-		if(!hasGetUserMedia) {
-			alert('Your browser cannot stream from your audio. Please switch to Chrome or Firefox.');
-			return;
+		if (clickAction === 'back') {
+			browserHistory.goBack();
+		}
+		else if (clickAction === 'clear') {
+			this.setState({
+				categories: [],
+				showErrorStatus: false
+			 });
+		}
+		else if (clickAction === 'next') {
+			if (this.state.categories.length > 0) {
+				this.props.setSelectedCategories(this.state.categories);
+				browserHistory.push('/start_interview/confirm_audio');
+			}
+			else {
+				this.setState({
+					showErrorStatus: true
+				});
+			}
 		}
 	};
 
+	handleErrorDismiss = () => {
+		this.setState({ showErrorStatus: false })
+	};
+
+	handleSuccessDismiss = () => {
+		this.setState({ showSuccessStatus: false })
+	};
+
+	componentDidMount = () => {
+		let errorMsg = '';
+		//work on compatibility with multiple browsers
+		// const hasGetUserMedia = !!(navigator.mediaDevices.getUserMedia || navigator.mediaDevices.webkitGetUserMedia ||
+		// 	navigator.mediaDevices.mozGetUserMedia || navigator.mediaDevices.msGetUserMedia);
+
+		navigator.mediaDevices.getUserMedia({ audio: true, video: false })
+		.then(stream => {
+			this.setState({
+				microphoneAccess: true
+			});
+		})
+		.catch(error => {
+			// alert('Your browser cannot stream from your audio. Please switch to Chrome or Firefox.');
+			if (error.name === 'ConstraintNotSatisfiedError') {
+				errorMsg = 'ERROR';
+			} else if ((error.name === 'PermissionDeniedError') || (error.name === 'NotAllowedError')) {
+				errorMsg = 'We cannot access your micorphone, because permissions were blocked. ' +
+				'Please grant access to your microphone.  For more information, go to ' +
+				<a href='https://support.google.com/chrome/answer/2693767?hl=en' target='_blank'>Google Chrome Help</a>;
+			}
+			console.log(errorMsg);
+			this.setState({
+				microphoneAccess: false,
+				showErrorStatus: true,
+				errorMsg: errorMsg
+			});
+		});
+	};
+
 	render() {
-		const { isRecording } = this.state;
+		const { showErrorStatus, showSuccessStatus } = this.state;
+
+		const MicAccessError = () => (
+			<Message negative
+				onDismiss={ this.handleErrorDismiss }
+				icon='warning'
+				header='Microphone Required'
+				content={ this.state.errorMsg }
+			/>
+		);
+
+		const MicAccessSuccess = () => (
+			<Message success
+				onDismiss={ this.handleSuccessDismiss }
+				icon='checkmark'
+				header='Audio Success'
+				content= "Great!  Your audio test worked.  Let's proceed with your interview."
+			/>
+		);
+
+		let handleBackClick = () => { this.handleButtonClick('back'); }
+		let handleClearClick = () => { this.handleButtonClick('clear'); }
+		let handleNextClick = () => { this.handleButtonClick('next'); }
 
 		return (
-			<div>
-				<ReactMic
-          className='oscilloscope'
-          record={ this.state.recordAudio }
-          backgroundColor='#FF4081'
-          visualSetting='sinewave'
-          audioBitsPerSecond= { 128000 }
-          onStop={ this.onStop }
-          onStart={ this.onStart }
-          strokeColor='#000000'
-				/>
-        <div>
-          <audio ref='audioSource' controls='controls' src={ this.state.blobURL }></audio>
-        </div>
-				<Button animated='fade' onClick={ this.startRecording } >
-	      	<Button.Content visible>Start Recording</Button.Content>
-	      	<Button.Content hidden><Icon name='microphone' /></Button.Content>
-    		</Button>
-				<Button animated='fade' onClick={ this.stopRecording }>
-					<Button.Content visible>Stop Recording</Button.Content>
-					<Button.Content hidden><Icon name='stop' /></Button.Content>
-				</Button>
-				<Button animated='fade' onClick={ this.upload }>
-					<Button.Content visible>Upload Response</Button.Content>
-					<Button.Content hidden><Icon name='cloud upload' /></Button.Content>
-				</Button>
-
+			<div id ='confirm-audio'>
+				<Grid.Row>
+					<h2>Test your audio before we begin your mock interview.</h2>
+					<br />
+				</Grid.Row>
+				<Grid.Row>
+					{ showErrorStatus ? <MicAccessError /> : null }
+					{ showSuccessStatus ? <MicAccessSuccess /> : null }
+				</Grid.Row>
+				<Grid.Row>
+					<ReactMic
+	          className='oscilloscope'
+	          record={ this.state.recordAudio }
+	          backgroundColor='#FF4081'
+	          visualSetting='sinewave'
+	          audioBitsPerSecond= { 128000 }
+	          onStop={ this.onStop }
+	          onStart={ this.onStart }
+	          strokeColor='#000000'
+					/>
+				</Grid.Row>
+				<Grid.Row>
+	        <audio ref='audioSource' controls='controls' src={ this.state.blobURL }></audio>
+				</Grid.Row>
+					<Grid.Row>
+					<Button animated='fade' onClick={ this.startRecording } >
+		      	<Button.Content visible>Start Recording</Button.Content>
+		      	<Button.Content hidden><Icon name='microphone' /></Button.Content>
+	    		</Button>
+					<Button animated='fade' onClick={ this.stopRecording }>
+						<Button.Content visible>Stop Recording</Button.Content>
+						<Button.Content hidden><Icon name='stop' /></Button.Content>
+					</Button>
+				</Grid.Row>
+				<Grid.Row>
+					<Button icon labelPosition='right' className='nav-button next' onClick={ handleNextClick }>
+						Next
+						<Icon name='right arrow' />
+					</Button>
+				</Grid.Row>
 			</div>
 		);
 	};

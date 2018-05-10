@@ -6,7 +6,7 @@ import Immutable from 'immutable';
 import * as actionTypes from "../actions/action_types";
 
 const initialState = Immutable.fromJS({
-	selectedNumQuestions: null,
+	selectedNumQuestions: 0,
 	selectedCategories: []
 });
 
@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
 	}
 	else if (action.type === actionTypes.CLEAR_NUM_QUESTIONS) {
 		return state.merge({
-			selectedNumQuestions: null
+			selectedNumQuestions: 0
 		});
 	}
 	else if (action.type === actionTypes.SET_CATEGORIES) {

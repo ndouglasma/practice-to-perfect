@@ -36,3 +36,6 @@ yarn-debug.log*
 
 # Ignore environment file
 .env
+
+# Ignore file uploads
+/public/uploads

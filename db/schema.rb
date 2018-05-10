@@ -34,11 +34,15 @@ ActiveRecord::Schema.define(version: 2018_05_07_202333) do
   create_table "user_responses", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "question_id", null: false
-    t.string "aws_s3_media_file_uri", null: false
+    t.string "audio", null: false
+    t.integer "audio_size"
+    t.string "audio_type"
+    t.time "audio_start_time"
+    t.time "audio_stop_time"
+    t.string "aws_s3_audio_uri"
     t.string "aws_transcribe_transcription_job_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["aws_s3_media_file_uri"], name: "index_user_responses_on_aws_s3_media_file_uri", unique: true
     t.index ["question_id"], name: "index_user_responses_on_question_id"
     t.index ["user_id"], name: "index_user_responses_on_user_id"
   end

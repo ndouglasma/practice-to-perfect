@@ -1,7 +1,8 @@
 // External Dependencies
 import React from 'react';
-import { Button, Grid, Header } from 'semantic-ui-react';
+import { Button, Grid, Header, Icon, Message } from 'semantic-ui-react';
 import { connect } from 'react-redux';
+import { browserHistory  } from 'react-router';
 
 // Internal Dependencies
 import { setSelectedCategories } from "../../actions/interview_action";
@@ -9,47 +10,66 @@ import { setSelectedCategories } from "../../actions/interview_action";
 class SelectCategories extends React.Component {
 	constructor(props){
     super(props)
-    this.state = {
+		this.state = {
+			selectedCategories: this.props.selectedCategories.toJS(),
+			errorStatus: false
     }
+	};
+
+	handleButtonClick = (clickAction) => {
+		if (clickAction === 'back') {
+			browserHistory.goBack();
+		}
+		else if (clickAction === 'clear') {
+			this.setState({
+				selectedCategories: [],
+				errorStatus: false
+			 });
+		}
+		else if (clickAction === 'next') {
+			if (this.state.selectedCategories.length > 0) {
+				this.props.setSelectedCategories(this.state.selectedCategories);
+				browserHistory.push('/start_interview/confirm_audio');
+			}
+			else {
+				this.setState({
+					errorStatus: true
+				});
+			}
+		}
+	};
+
+	handleDismiss = () => {
+		this.setState({ errorStatus: false })
 	};
 
 	//if category found in current state, return its index; otherwise return null to indicate not found
 	findCategoryIndex = (categoryId) => {
 		let returnValue = null;
-		// console.log('INSIDE findCategoryIndex');
-		// console.log(categoryId);
-		const propsSelectedCategories = this.props.selectedCategories.toJS();
-		// console.log(propsSelectedCategories);
 
-		for (let i = 0; i < propsSelectedCategories.length; i++) {
-			// console.log(propsSelectedCategories[i].id)
-			if (categoryId === propsSelectedCategories[i].id) {
-				// console.log('FOUND CATEGORY');
-				// console.log(i);
+		for (let i = 0; i < this.state.selectedCategories.length; i++) {
+			if (categoryId === this.state.selectedCategories[i].id) {
 				returnValue = i;
 				break;
 			}
 	  };
-
 		return returnValue;
 	};
 
   toggleSelectedCategories = (categoryId, categoryName) => {
-		let categories= this.props.selectedCategories.toJS();
-    // console.log(categoryId);
-		// console.log(categoryName);
+		let categories = this.state.selectedCategories;
 
 		//if category already part of state, toggle its removal; otherwise add
 		const foundCategoryIndex = this.findCategoryIndex(categoryId);
 		if (foundCategoryIndex === null) {
-			// console.log('NULL');
 			categories.push({id: categoryId, name: categoryName});
 		}
 		else {
-			// console.log('READY TO REMOVE');
 			const removedCategory = categories.splice(foundCategoryIndex, 1);
 		}
-    this.props.setSelectedCategories(categories);
+		this.setState ({
+			selectedCategories: categories
+		});
   };
 
   render() {
@@ -62,6 +82,21 @@ class SelectCategories extends React.Component {
 			{ id: 6, name: 'Surprise Me' }
 		];
 
+		const { errorStatus } = this.state;
+
+		const SelectError = () => (
+			<Message negative
+				onDismiss={ this.handleDismiss }
+				icon='warning'
+				header='Category Required'
+				content="Please select at least one category in order to proceed. If you're not sure, select 'Surprise Me'"
+			/>
+		);
+
+		let handleBackClick = () => { this.handleButtonClick('back'); }
+		let handleClearClick = () => { this.handleButtonClick('clear'); }
+		let handleNextClick = () => { this.handleButtonClick('next'); }
+
     let categoryButtons = categories.map(category => {
       let active=false;
 			const foundCategoryIndex = this.findCategoryIndex(category.id);
@@ -71,7 +106,6 @@ class SelectCategories extends React.Component {
 			}
 
       let handleClick = () => {
-        // console.log(category.name + ' ' + active);
         this.toggleSelectedCategories(category.id, category.name);
       }
 
@@ -89,11 +123,29 @@ class SelectCategories extends React.Component {
 
 		return (
 			<div id ='select-categories'>
-				<h2>Pick which categories you want to cover in your interview.</h2>
-				<br />
-				<Grid container columns={4} id='category-button-group'>
-					{ categoryButtons }
-				</Grid>
+				<Grid.Row>
+					<h2>Pick which categories you want to cover in your interview.</h2>
+					<br />
+				</Grid.Row>
+				<Grid.Row>
+					{ errorStatus ? <SelectError /> : null }
+				</Grid.Row>
+				<Grid.Row>
+					<Grid container columns={4} id='category-button-group'>
+						{ categoryButtons }
+					</Grid>
+				</Grid.Row>
+				<Grid.Row>
+					<Button icon labelPosition='left' className='nav-button' onClick={ handleBackClick }>
+						Back
+						<Icon name='left arrow' />
+					</Button>
+					<Button className='nav-button' onClick={ handleClearClick }>Clear</Button>
+					<Button icon labelPosition='right' className='nav-button next' onClick={ handleNextClick }>
+						Next
+						<Icon name='right arrow' />
+					</Button>
+				</Grid.Row>
 			</div>
     );
   };
