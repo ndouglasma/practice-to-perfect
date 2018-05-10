@@ -1,10 +1,7 @@
 //External Dependencies
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
-import { Button, Divider, Segment } from 'semantic-ui-react';
-
-//Internal Dependencies
-import PropTypes from 'prop-types';
+import { Button, Divider, Icon, Segment } from 'semantic-ui-react';
 
 class Login extends React.Component {
 	constructor(props){
@@ -23,15 +20,12 @@ class Login extends React.Component {
 						<h3>All in a low stakes environment.</h3>
 					</div>
 			    <Divider horizontal>
-						<Link to={ 'overview' }><Button primary>Log in with GitHub</Button></Link>
+						<Link to={ 'overview' }><Button primary><Icon name='github' /> Log in with GitHub</Button></Link>
 					</Divider>
 			  </Segment>
 			</div>
 		);
 	}
 }
-
-Login.propTypes = {
-};
 
 export default Login;

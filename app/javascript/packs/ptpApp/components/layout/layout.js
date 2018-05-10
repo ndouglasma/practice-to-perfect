@@ -1,6 +1,11 @@
 //External Dependencies
 import React from 'react';
-import { Button, Container, Icon, Menu } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
+import { Link } from 'react-router';
+
+//Internal Dependencies
+import Header from '../header/header';
+import Footer from '../footer/footer';
 
 class Layout extends React.Component {
   constructor(props){
@@ -12,23 +17,14 @@ class Layout extends React.Component {
   render() {
     return(
       <div id='layout-container'>
-        <div id='header-background'>
-          <Container>
-            <h1>I know this works</h1>
-          </Container>
+        <Header />
+        <div id='body'>
+          { this.props.children }
         </div>
-        <div id='body-background'>
-          <Container>
-            { this.props.children }
-          </Container>
-        </div>
-        <div id='footer-background'>
-          <Container>
-            <h1>I know this works</h1>
-          </Container>
-        </div>
+        <Footer />
       </div>
     )
   }
 };
+
 export default Layout;

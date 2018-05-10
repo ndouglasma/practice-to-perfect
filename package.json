@@ -11,10 +11,17 @@
   },
   "dependencies": {
     "@rails/webpacker": "3.4",
+    "immutable": "^3.8.2",
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
+    "react-mic": "^9.1.2",
+    "react-redux": "^5.0.7",
     "react-router": "3.2.1",
+    "react-router-redux": "^4.0.8",
+    "redux": "^4.0.0",
+    "redux-immutable": "^4.0.0",
+    "redux-saga": "^0.16.0",
     "resolve-url-loader": "^2.3.0",
     "semantic-ui-css": "^2.3.1",
     "semantic-ui-react": "^0.79.1"
@@ -22,6 +29,7 @@
   "devDependencies": {
     "babel-preset-react": "^6.24.1",
     "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "jasmine-ajax": "^3.3.1",
     "jasmine-core": "^3.1.0",
     "jasmine-enzyme": "^6.0.0",
@@ -34,6 +42,8 @@
     "karma-webpack": "^3.0.0",
     "phantomjs-prebuilt": "^2.1.16",
     "react-addons-test-utils": "^15.6.2",
+    "redux-logger": "^3.0.6",
+    "redux-mock-store": "^1.5.1",
     "webpack-cli": "^2.0.15",
     "webpack-dev-server": "^2.11.1"
   }

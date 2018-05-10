@@ -3,7 +3,7 @@ Coveralls.wear!('rails')
 
 RSpec.configure do |config|
   #react_on_rails addition
-  config.example_status_persistence_file_path = "spec/examples.txt"
+  # config.example_status_persistence_file_path = "spec/examples.txt"
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
