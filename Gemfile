@@ -6,6 +6,7 @@ ruby '2.3.3'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'aws-sdk-rails'
 gem 'aws-sdk-s3'
+gem 'aws-sdk-transcribeservice', '~> 1.1'
 gem 'bootsnap', '>= 1.1.0', require: false
 # gem 'carrierwave'
 gem 'carrierwave-base64'

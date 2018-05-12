@@ -1,4 +1,4 @@
-import { setSelectedNumQuestions, clearSelectedNumQuestions, setSelectedCategories, clearSelectedCategories } from "./set_up_interview_action";
+import { setSelectedNumQuestions, clearSelectedNumQuestions, setSelectedCategories, clearSelectedCategories } from "./interview_action";
 
 export {
 	setSelectedNumQuestions,

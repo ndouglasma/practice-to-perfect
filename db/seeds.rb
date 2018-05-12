@@ -5,6 +5,7 @@ problem = QuestionCategory.create(name: 'Problem-solving')
 motivate = QuestionCategory.create(name: 'Motivational')
 tech = QuestionCategory.create(name: 'Technical Skills')
 info = QuestionCategory.create(name: 'Informational')
+surprise = QuestionCategory.create(name: 'Surprise Me')
 
 Question.create(body: "Talk about a time when you had to work closely with someone whose personality was very different from yours.", question_category: behave)
 Question.create(body: "Give me an example of a time you faced a conflict while working on a team. How did you handle that?", question_category: behave)

@@ -4,5 +4,6 @@ class User < ApplicationRecord
   validates_format_of :github_avatar_url, with: URI::regexp(["http", "https"])
 
   has_many :user_responses
+  has_many :mock_interviews
   has_many :questions, through: :user_responses
 end

@@ -7,7 +7,8 @@ import * as actionTypes from "../actions/action_types";
 
 const initialState = Immutable.fromJS({
 	selectedNumQuestions: 0,
-	selectedCategories: []
+	selectedCategories: [],
+	mockInterview: []
 });
 
 export default (state = initialState, action) => {
@@ -31,6 +32,12 @@ export default (state = initialState, action) => {
 	else if (action.type === actionTypes.CLEAR_CATEGORIES) {
 		return state.merge({
 			selectedCategories: []
+		});
+	}
+	else if (action.type === actionTypes.SUCCESS_QUESTIONSAPI) {
+		console.log('GOT HERE');
+		return state.merge({ //returning new state
+			mockInterview: action.mockInterview
 		});
 	}
 	return state; //worst-case scenario will return initial state

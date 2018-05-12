@@ -11,7 +11,6 @@ import { Provider } from 'react-redux';
 import 'semantic-ui-css/semantic.min.css';
 
 //Internal Dependencies
-
 import Layout from './components/layout/layout';
 import Login from './components/user_auth/login';
 import Overview from './components/overview/overview';
@@ -19,11 +18,12 @@ import SetUpInterview from './components/set_up_interview/set_up_interview';
 import SelectNumQuestions from './components/set_up_interview/01_select_num_questions';
 import SelectCategories from './components/set_up_interview/02_select_categories';
 import ConfirmAudio from './components/set_up_interview/03_confirm_audio';
-import Countdown from './components/set_up_interview/04_countdown';
+import Rules from './components/set_up_interview/04_rules';
+import Countdown from './components/set_up_interview/05_countdown';
 import Countdown2 from './components/set_up_interview/countdown2';
 
-// import rootSaga from '../sagas/index';
 import rootReducer from './reducers/index';
+import rootSaga from './sagas/sagas';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -33,14 +33,14 @@ const store = createStore(
 	rootReducer,
 	composeEnhancers(
 		applyMiddleware(
-			// sagaMiddleware,
+			sagaMiddleware,
 			createLogger()
 		)
 	)
 );
 
 //starts the saga
-// sagaMiddleware.run(rootSaga);
+sagaMiddleware.run(rootSaga);
 
 /* Create enhanced history object for router */
 const createSelectLocationState = () => {
@@ -72,6 +72,7 @@ const App = (props) => (
 					<Route path='select_num_questions' component={ SelectNumQuestions } />
 					<Route path='select_categories' component={ SelectCategories } />
 					<Route path='confirm_audio' component={ ConfirmAudio } />
+					<Route path='rules' component={ Rules } />
 					<Route path='countdown' component={ Countdown } />
 					<Route path='countdown2' component={ Countdown2 } />
 				</Route>

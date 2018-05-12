@@ -55,7 +55,7 @@ class ConfirmAudio extends React.Component {
 			browserHistory.goBack();
 		}
 		else if (clickAction === 'next') {
-			browserHistory.push('/set_up_interview/countdown');
+			browserHistory.push('/set_up_interview/rules');
 		}
 	};
 

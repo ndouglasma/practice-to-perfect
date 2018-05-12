@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { browserHistory  } from 'react-router';
 
 // Internal Dependencies
-import { setSelectedNumQuestions } from "../../actions/set_up_interview_action";
+import { setSelectedNumQuestions } from "../../actions/interview_action";
 
 class SelectNumQuestions extends React.Component {
 	constructor(props){
@@ -117,7 +117,7 @@ class SelectNumQuestions extends React.Component {
 const mapStateToProps = (state) => {
 	return {
 		currentLocation: state.get('routing').get('locationBeforeTransitions').get('pathname'),
-		selectedNumQuestions: state.get('set_up_interview').get('selectedNumQuestions')
+		selectedNumQuestions: state.get('interview').get('selectedNumQuestions')
 	};
 };
 

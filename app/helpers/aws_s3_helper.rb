@@ -1,6 +1,7 @@
 require 'aws-sdk-s3'
 
 module AwsS3Helper
+  
   def s3_bucket_exist?(input_bucket)
     bucket_exists = false
     # Get an Amazon S3 resource
