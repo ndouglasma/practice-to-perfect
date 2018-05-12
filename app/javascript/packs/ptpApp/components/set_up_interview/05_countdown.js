@@ -1,7 +1,11 @@
 // External Dependencies
 import React from 'react';
 import { Grid, Header, Icon } from 'semantic-ui-react';
+import { connect } from 'react-redux';
 import { browserHistory  } from 'react-router';
+
+// Internal Dependencies
+import { requestQuestionsAPI } from "../../actions/interview_action";
 
 class Countdown extends React.Component {
 	constructor(props){
@@ -41,6 +45,8 @@ class Countdown extends React.Component {
       () => this.countDown(),
       1000
     );
+		//grab random questions and store in state
+		// this.props.requestQuestions();
   }
 
   componentWillUnmount() {
@@ -106,4 +112,13 @@ class Countdown extends React.Component {
   };
 };
 
-export default Countdown;
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		requestQuestions: () => {
+			dispatch(requestQuestionsAPI());
+		}
+	};
+};
+
+export default connect(null, mapDispatchToProps)(Countdown);

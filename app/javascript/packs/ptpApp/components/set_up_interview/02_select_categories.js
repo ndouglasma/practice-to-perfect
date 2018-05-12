@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { browserHistory  } from 'react-router';
 
 // Internal Dependencies
-import { setSelectedCategories } from "../../actions/interview_action";
+import { setSelectedCategories, requestQuestionsAPI } from "../../actions/interview_action";
 
 class SelectCategories extends React.Component {
 	constructor(props){
@@ -71,6 +71,10 @@ class SelectCategories extends React.Component {
 			selectedCategories: categories
 		});
   };
+
+	componentWillUnmount() {
+		this.props.requestQuestions();
+	}
 
   render() {
     const categories=[
@@ -161,6 +165,9 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		setSelectedCategories: (categoryId, categoryName) => {
 			dispatch(setSelectedCategories(categoryId, categoryName));
+		},
+		requestQuestions: () => {
+			dispatch(requestQuestionsAPI());
 		}
 	};
 };

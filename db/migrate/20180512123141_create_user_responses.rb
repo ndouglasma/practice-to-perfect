@@ -2,6 +2,7 @@ class CreateUserResponses < ActiveRecord::Migration[5.2]
   def change
     create_table :user_responses do |t|
       t.belongs_to :user, null: false
+      t.belongs_to :mock_interview, null: false
       t.belongs_to :question, null: false
       t.string :audio, null: false
       t.integer :audio_size

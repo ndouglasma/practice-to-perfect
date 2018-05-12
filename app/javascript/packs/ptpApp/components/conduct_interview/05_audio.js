@@ -75,7 +75,7 @@ class XXX extends React.Component {
 				  body: formData,
 					headers: {
 						'Accept': 'application/json, */*'
-				  },
+				  }
 				}).then(response => {
 					if (response.ok) {
 						return response;

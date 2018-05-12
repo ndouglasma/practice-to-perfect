@@ -32,3 +32,10 @@ export function clearSelectedCategories() {
 		selectedCategories: []
 	};
 };
+
+export function requestQuestionsAPI() {
+	console.log("About to launch requestQuestionsAPI");
+	return {
+		type: actionTypes.REQUEST_QUESTIONSAPI
+	};
+}
