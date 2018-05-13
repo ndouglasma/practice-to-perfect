@@ -1,6 +1,6 @@
 // External Dependencies
 import React from 'react';
-import { Button, Grid, Header, Icon, Message } from 'semantic-ui-react';
+import { Button, Card, Grid, Header, Icon, Message } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { browserHistory  } from 'react-router';
 
@@ -12,7 +12,9 @@ class SelectCategories extends React.Component {
     super(props)
 		this.state = {
 			selectedCategories: this.props.selectedCategories.toJS(),
-			errorStatus: false
+			selectNotice: true,
+			errorStatus: false,
+			errorMessage: ''
     }
 	};
 
@@ -23,7 +25,8 @@ class SelectCategories extends React.Component {
 		else if (clickAction === 'clear') {
 			this.setState({
 				selectedCategories: [],
-				errorStatus: false
+				errorStatus: false,
+				errorMessage: ''
 			 });
 		}
 		else if (clickAction === 'next') {
@@ -33,14 +36,18 @@ class SelectCategories extends React.Component {
 			}
 			else {
 				this.setState({
-					errorStatus: true
+					errorStatus: true,
+					errorMessage: "You must select at least 1 category in order to proceed. If you are undecided, pick 'Just Surpise Me'"
 				});
 			}
 		}
 	};
 
-	handleDismiss = () => {
-		this.setState({ errorStatus: false })
+	handleDismissSelectError = () => {
+		this.setState({
+			errorStatus: false,
+		 	errorMessage: ''
+		});
 	};
 
 	//if category found in current state, return its index; otherwise return null to indicate not found
@@ -58,11 +65,39 @@ class SelectCategories extends React.Component {
 
   toggleSelectedCategories = (categoryId, categoryName) => {
 		let categories = this.state.selectedCategories;
+		//clear error message
+		this.setState ({
+			errorStatus: false,
+			errorMessage: ''
+		});
 
 		//if category already part of state, toggle its removal; otherwise add
 		const foundCategoryIndex = this.findCategoryIndex(categoryId);
 		if (foundCategoryIndex === null) {
-			categories.push({id: categoryId, name: categoryName});
+			//if user selects "Just Surprise Me", get rid of all other entries
+			if (categoryName === 'Just Surprise Me') {
+				categories = [];
+				categories.push({id: categoryId, name: categoryName});
+			}
+			else {
+				//check to see if "Just Surprise Me" is there; if so, it would be the only value, therefore clear it out before proceeding
+				if ((categories.length === 1) && (categories[0].name === 'Just Surprise Me')) {
+					categories = [];
+				}
+				//check if user is about to exceed their allotted number of selected categories based on number of questions for the interview.
+				//if so, display warning message.
+				console.log('this.state.selectedCategories.length=[' + this.state.selectedCategories.length +']');
+				console.log('this.props.selectedNumQuestions=[' + this.props.selectedNumQuestions +']');
+				if (this.state.selectedCategories.length + 1 <= this.props.selectedNumQuestions) {
+					categories.push({id: categoryId, name: categoryName});
+				}
+				else {
+					this.setState ({
+						errorStatus: true,
+						errorMessage: `You can select ${this.props.selectedNumQuestions === 1 ? ' category.' : '1 - '.concat(this.props.selectedNumQuestions).toString().concat(' categories.')}.  Not sure?  Select 'Just Surprise Me'.`
+					});
+				}
+			}
 		}
 		else {
 			const removedCategory = categories.splice(foundCategoryIndex, 1);
@@ -78,22 +113,22 @@ class SelectCategories extends React.Component {
 
   render() {
     const categories=[
-			{ id: 1, name: 'Behavioral' },
-			{ id: 2, name: 'Problem-solving' },
-			{ id: 3, name: 'Motivational' },
-			{ id: 4, name: 'Technical Skills' },
-			{ id: 5, name: 'Informational' },
-			{ id: 6, name: 'Surprise Me' }
+			{ id: 1, name: 'Behavioral', description: "This type of question measures your past behaviors as a predictor of future results; particularly when faced with a difficult situation, how did you react.  Examples include inquiries about tensions with a co-worker and how it was resolved, or asking about the decision-making process for a major project that the candidate worked on." },
+			{ id: 2, name: 'Problem-solving', description: "Problem-solving questions evaluate your ability to analyze information.  They can include case studies, situational questions, and brainteasers.  Examples include what is 1000 divided by 62; and how would you describe your favorite artwork to someone who has never seen it." },
+			{ id: 3, name: 'Motivational', description: "This line of questioning aims to find out what keeps you motivated and engaged at work.  Examples include what were the exciting aspects of your previous job; and how are you a self-starter." },
+			{ id: 4, name: 'Technical Skills', description: "The employer wants to see if you have the technical aptitute to meet the jobs requirements.  This will include questions about skills, experience, certifications, competencies, programming languages, frameworks, libraries, and development tools you know.  Examples include mock coding challenges; explain what is MVC; and describe your experience with Test Driven Development and the tools you use." },
+			{ id: 5, name: 'Informational', description: "Informational questions cover the contents of your resume - including professional, educational, technical projects, volunteerism, and awards/certifiations earned.  Examples inclue tell me about yourself; why did you select your major; and what has been your involvement in the tech community." },
+			{ id: 6, name: 'Just Surprise Me', description: "Oftentimes you will not know what questions you'll be asked.  Select this category to get a random list of questions for your mock interview." }
 		];
 
-		const { errorStatus } = this.state;
+		const { errorStatus, errorMessage } = this.state;
 
 		const SelectError = () => (
 			<Message negative
-				onDismiss={ this.handleDismiss }
+				onDismiss={ this.handleDismissSelectError }
 				icon='warning'
 				header='Category Required'
-				content="Please select at least one category in order to proceed. If you're not sure, select 'Surprise Me'"
+				content={ errorMessage }
 			/>
 		);
 
@@ -115,12 +150,19 @@ class SelectCategories extends React.Component {
 
       return(
         <Grid.Column key={ category.id }>
-          <Button
-            color={ active ? 'blue' : null }
-            onClick={ handleClick }
-            >
-            <Header as='h3'>{ category.name }</Header>
-          </Button>
+					<Card
+						color={ active ? 'green' : null }
+						onClick={ handleClick }
+						raised
+						>
+						<Card.Content>
+							<Grid>
+								<Grid.Column width={12}><Card.Header>{ category.name }</Card.Header></Grid.Column>
+								<Grid.Column width={4}>{ active ? <Icon floated='right' name='checkmark' size='big' /> : null }</Grid.Column>
+							</Grid>
+						</Card.Content>
+						<Card.Content><Card.Description>{ category.description }</Card.Description></Card.Content>
+					</Card>
         </Grid.Column>
       );
     });
@@ -128,14 +170,15 @@ class SelectCategories extends React.Component {
 		return (
 			<div id ='select-categories'>
 				<Grid.Row>
-					<h2>Pick which categories you want to cover in your interview.</h2>
+					<h2>Pick { this.props.selectedNumQuestions === 1 ? '1 category' : '1 - '.concat(this.props.selectedNumQuestions).toString().concat(' categories') } to cover in your interview.&ensp;Can&apos;t decide?&ensp;Pick &apos;Just Surpise Me&apos;.</h2>
+					<h3>Keep in mind if you select &apos;Just Surpise Me&apos;, you cannot select any other category.</h3>
 					<br />
 				</Grid.Row>
 				<Grid.Row>
 					{ errorStatus ? <SelectError /> : null }
 				</Grid.Row>
 				<Grid.Row>
-					<Grid container columns={4} id='category-button-group'>
+					<Grid container columns={4} id='category-card-group'>
 						{ categoryButtons }
 					</Grid>
 				</Grid.Row>
@@ -157,6 +200,7 @@ class SelectCategories extends React.Component {
 
 const mapStateToProps = (state) => {
 	return {
+		selectedNumQuestions: state.get('interview').get('selectedNumQuestions'),
 		selectedCategories: state.get('interview').get('selectedCategories')
 	};
 };
@@ -173,3 +217,10 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SelectCategories);
+
+// <Button
+// 	color={ active ? 'blue' : null }
+// 	onClick={ handleClick }
+// 	>
+// 	<Header as='h3'>{ category.name }</Header>
+// </Button>
