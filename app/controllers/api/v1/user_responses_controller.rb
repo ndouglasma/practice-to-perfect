@@ -6,6 +6,7 @@ class Api::V1::UserResponsesController < ApplicationController
 
   def create
     # ActiveRecord::Base.transaction do
+<<<<<<< HEAD
       @new_user_response = UserResponse.create!(user_response_params)
       # @new_mock_interview.aws_transcribe_transcription_job_name = 'launch-academy-interview-technical-answer-user'
       # binding.pry
@@ -15,6 +16,17 @@ class Api::V1::UserResponsesController < ApplicationController
         job_response = aws_start_transription_job(transcribe_job_name, @new_user_response.audio.mp3.url)
 
         render json: { :user_response => @new_user_response }
+=======
+      @new_user_reponse = UserResponse.create!(user_response_params)
+      # @new_mock_interview.aws_transcribe_transcription_job_name = 'launch-academy-interview-technical-answer-user'
+      binding.pry
+      if @new_user_reponse.errors.full_messages.empty?
+        # Proceed with transcribe job
+        transcribe_job_name = "launch-academy-interview-user-response-user-U#{@new_user_reponse.user_id}M#{@new_user_reponse.mock_interview_id}-Q#{@new_user_reponse.question_id}-UR#{@new_user_reponse.id}"
+        job_response = aws_start_transription_job(transcribe_job_name, @new_user_reponse.audio.url)
+
+        render json: { :user_response => @new_user_reponse }
+>>>>>>> master
       else
         render json: { error: @new_user_response.errors.full_messages }, status: :unprocessable_entity
       end
@@ -24,6 +36,10 @@ class Api::V1::UserResponsesController < ApplicationController
   private
 
   def user_response_params
+<<<<<<< HEAD
     params.permit(:audio_size, :audio_type, :audio_start_time, :audio_stop_time, :audio, :user_id, :mock_interview_id, :question_id)
+=======
+    params.permit(:audio_size, :audio_type, :audio_start_time, :audio_stop_time, :audio, :user_id, :mock_interview_id, :question_id, :format)
+>>>>>>> master
   end
 end
