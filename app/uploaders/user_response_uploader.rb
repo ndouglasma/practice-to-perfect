@@ -40,11 +40,20 @@ require 'fog/aws'
 
 class UserResponseUploader < CarrierWave::Uploader::Base
   include CarrierWave::Audio
+  include CarrierWave::FFmpeg
 
   if Rails.env.test?
     storage :file
   else
     storage :fog
+  end
+
+  version :mp3 do
+    process encode: [:mp3, audio_codec: "a libmp3lame -qscale:a 2"]
+
+    def full_filename(for_file)
+      super.chomp(File.extname(super)) + '.mp3'
+    end
   end
 
   # You can find full list of custom headers in AWS SDK documentation on
