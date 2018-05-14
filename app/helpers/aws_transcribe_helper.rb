@@ -24,7 +24,7 @@ module AwsTranscribeHelper
     resp = client.start_transcription_job({
       transcription_job_name: input_job_name,
       language_code: "en-US",
-      media_format: "mp4",
+      media_format: "mp3",
       media: {
         media_file_uri: input_audio_url
       }
