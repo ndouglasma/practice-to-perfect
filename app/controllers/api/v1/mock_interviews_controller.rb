@@ -41,14 +41,16 @@ class Api::V1::MockInterviewsController < ApplicationController
     interview_questions = []
 
 
-    # if user selected category 'Surprise Me', that will be the only category linked to interview; therefore candidate_questions = all questions in DB
-    if(@new_mock_interview.user_selected_categories.name === 'Surprise Me')
+    # if user selected category 'Just Surprise Me', that will be the only category linked to interview; therefore candidate_questions = all questions in DB
+    # binding.pry
+    if(@new_mock_interview.user_selected_categories[0].question_category_id === 6)
       grab_candidate_questions = Question.all
       candidate_questions = grab_candidate_questions.to_ary
 
       @new_mock_interview.selected_num_questions.times do
-        random_index = rand(0..candidate_questions.length)
-        random_question = category_questions.slice!(random_index)
+        # need to subtract 1 from length accounting for the array indexes starting at 0
+        random_index = rand(0..candidate_questions.length-1)
+        random_question = candidate_questions.slice!(random_index)
         interview_questions.push(random_question)
       end
     else # need to loop through user selected categories to grab questions
@@ -58,29 +60,29 @@ class Api::V1::MockInterviewsController < ApplicationController
         category_questions = grab_category_questions.to_ary
 
         # make sure at least 1 of the category questions gets selected
-        random_index = rand(0..category_questions.length)
+        random_index = rand(0..category_questions.length-1)
         # binding.pry
         random_question = category_questions.slice!(random_index)
         interview_questions.push(random_question)
 
         # push the rest of the category questions onto the candidate_questions array for further random selection
-        candidate_questions.push(category_questions)
+        candidate_questions.concat(category_questions)
       end
 
       #of number of questions left for random selection, loop to grab
-      num_more_questions_needed = @new_mock_interview.selected_num_questions - candidate_questions.length
+      num_more_questions_needed = @new_mock_interview.selected_num_questions - interview_questions.length
 
       if (num_more_questions_needed > 0)
         num_more_questions_needed.times do
-          random_index = rand(0..candidate_questions.length)
+          random_index = rand(0..candidate_questions.length-1)
           random_question = candidate_questions.slice!(random_index)
+          # binding.pry
           interview_questions.push(random_question)
         end
       end
     end
 
     render json: {:mock_interview => @new_mock_interview, :questions => interview_questions}
-    # render json: { mock_interview: @new_mock_interview }
   end
 
   private
@@ -89,21 +91,3 @@ class Api::V1::MockInterviewsController < ApplicationController
     params.permit(:selected_num_questions, {selected_categories: [:id, :name]})
   end
 end
-
-
-
-
-# @new_mock_interview.user_response = UserResponse.new()
-# @new_mock_interview.question = Question.first
-# @new_mock_interview.audio = (params[:audio])
-# @new_mock_interview.aws_s3_audio_uri = 'https://s3.amazonaws.com/audexus-launch-academy-breakable-toy/Testing.mp4'
-# @new_mock_interview.aws_transcribe_transcription_job_name = 'launch-academy-interview-technical-answer-user'
-# if s3_bucket_exist?(ENV['S3_BUCKET_LAUNCH_ACADEMY'])
-#   if @new_mock_interview.save!
-#     render json: { user_response: @new_mock_interview }
-#   else
-#     render json: { error: @new_mock_interview.errors.full_messages }, status: :unprocessable_entity
-#   end
-# else
-#   puts 'AWS S3 BUCKET DOESNT EXIST'
-# end

@@ -13,6 +13,7 @@ class ConfirmAudio extends React.Component {
     this.state = {
 			microphoneAccess: false,
 			recordAudio: false,
+			testAudioSuccess: false,
 			blobURL: null,
 			showErrorStatus: false,
 			showSuccessStatus: false,
@@ -36,7 +37,6 @@ class ConfirmAudio extends React.Component {
 	}
 
 	onStart = () => {
-		console.log('You can tap into the onStart callback');
 	}
 
 	onStop = (blobAudio) => {
@@ -44,18 +44,31 @@ class ConfirmAudio extends React.Component {
 		this.setState({
 			blobURL: blobAudio.blobURL,
 			showErrorStatus: false,
-			showSuccessStatus: true
+			showSuccessStatus: true,
+			testAudioSuccess: true,
 		});
 	};
 
 	handleButtonClick = (clickAction) => {
 		console.log(clickAction);
+		let errorMsg = '';
 
 		if (clickAction === 'back') {
 			browserHistory.goBack();
 		}
 		else if (clickAction === 'next') {
-			browserHistory.push('/set_up_interview/rules');
+			// Only allow user to proceed with their micorphone works.
+			if ((this.state.microphoneAccess === true) && (this.state.testAudioSuccess === true)) {
+				browserHistory.push('/set_up_interview/rules');
+			}
+			else {
+				errorMsg = "We could not confirm access to your micorphone.  Please test it to ensure we have access to the microphone." +
+				'For more information, go to ' + <a href='https://support.google.com/chrome/answer/2693767?hl=en' target='_blank'>Google Chrome Help</a>;
+				this.setState({
+					showErrorStatus: true,
+					errorMsg: errorMsg
+				});
+			}
 		}
 	};
 
@@ -88,7 +101,6 @@ class ConfirmAudio extends React.Component {
 				'Please grant access to your microphone.  For more information, go to ' +
 				<a href='https://support.google.com/chrome/answer/2693767?hl=en' target='_blank'>Google Chrome Help</a>;
 			}
-			console.log(errorMsg);
 			this.setState({
 				microphoneAccess: false,
 				showErrorStatus: true,

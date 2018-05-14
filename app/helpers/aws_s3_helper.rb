@@ -1,8 +1,8 @@
 require 'aws-sdk-s3'
 
 module AwsS3Helper
-  
-  def s3_bucket_exist?(input_bucket)
+
+  def aws_s3_bucket_exist?(input_bucket)
     bucket_exists = false
     # Get an Amazon S3 resource
     s3_client = Aws::S3::Client.new(region: ENV['AWS_REGION'])

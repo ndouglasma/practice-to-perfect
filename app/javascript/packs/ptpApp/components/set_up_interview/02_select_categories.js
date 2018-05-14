@@ -217,10 +217,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SelectCategories);
-
-// <Button
-// 	color={ active ? 'blue' : null }
-// 	onClick={ handleClick }
-// 	>
-// 	<Header as='h3'>{ category.name }</Header>
-// </Button>
