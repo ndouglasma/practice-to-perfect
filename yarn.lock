@@ -7015,9 +7015,9 @@ react-is@^16.3.2:
   version "16.3.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.3.2.tgz#f4d3d0e2f5fbb6ac46450641eb2e25bf05d36b22"
 
-react-mic@^9.1.2:
-  version "9.1.2"
-  resolved "https://registry.yarnpkg.com/react-mic/-/react-mic-9.1.2.tgz#ce57793dbb49145296c868b3d01496e558ecd982"
+react-mic@^9.2.0:
+  version "9.2.0"
+  resolved "https://registry.yarnpkg.com/react-mic/-/react-mic-9.2.0.tgz#b1b082f5b16f4c745425eafb47cb3ea1201fac5b"
   dependencies:
     prop-types "^15.5.10"
     react-ga "^2.2.0"

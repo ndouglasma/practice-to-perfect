@@ -1,18 +1,28 @@
 require 'fog/aws'
 
 class UserResponseUploader < CarrierWave::Uploader::Base
-  include CarrierWave::Audio
-
+  # include CarrierWave::FFmpeg
   if Rails.env.test?
     storage :file
   else
     storage :fog
   end
 
-  # You can find full list of custom headers in AWS SDK documentation on
+  version :mp3 do
+    process :generate_mp3
+
+    def full_filename(for_file)
+      super.chomp(File.extname(super)) + '.mp3'
+    end
+  end
+
   # AWS::S3::S3Object
   def download_url(filename)
     url(response_content_disposition: %Q{attachment; filename="#{filename}"})
+  end
+
+  def generate_mp3
+    `ffmpeg -i "#{self.file.path}" "#{self.file.path.gsub(".weba", ".mp3")}"`
   end
 
   def store_dir

@@ -20,7 +20,8 @@ import SelectCategories from './components/set_up_interview/02_select_categories
 import ConfirmAudio from './components/set_up_interview/03_confirm_audio';
 import Rules from './components/set_up_interview/04_rules';
 import Countdown from './components/set_up_interview/05_countdown';
-import Countdown2 from './components/set_up_interview/countdown2';
+import ConductInterview from './components/conduct_interview/conduct_interview';
+import Question from './components/conduct_interview/question';
 
 import rootReducer from './reducers/index';
 import rootSaga from './sagas/sagas';
@@ -74,7 +75,10 @@ const App = (props) => (
 					<Route path='confirm_audio' component={ ConfirmAudio } />
 					<Route path='rules' component={ Rules } />
 					<Route path='countdown' component={ Countdown } />
-					<Route path='countdown2' component={ Countdown2 } />
+				</Route>
+				<Route path='conduct_interview' component={ ConductInterview }>
+					<IndexRoute component={ Question } />
+					<Route path='question' component={ Question } />
 				</Route>
       </Route>
     </Router>

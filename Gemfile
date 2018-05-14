@@ -8,9 +8,10 @@ gem 'aws-sdk-rails'
 gem 'aws-sdk-s3'
 gem 'aws-sdk-transcribeservice', '~> 1.1'
 gem 'bootsnap', '>= 1.1.0', require: false
-# gem 'carrierwave'
+gem 'carrierwave'
+# gem 'carrierwave-audio'
 gem 'carrierwave-base64'
-gem 'carrierwave-audio'
+# gem 'carrierwave-ffmpeg'
 gem 'fog-aws'
 gem 'jbuilder', '~> 2.5'
 gem "omniauth-github"

@@ -2,7 +2,7 @@ require 'aws-sdk-transcribeservice'
 
 module AwsTranscribeHelper
 
-  def transcribe_job_exist?(input_job)
+  def aws_transcribe_job_exist?(input_job)
     client = Aws::TranscribeService::Client.new
 
     resp = client.list_transcription_jobs({
@@ -18,23 +18,18 @@ module AwsTranscribeHelper
     end
   end
 
-  def start_transription(input_job_name, input_media_file_uri)
+  def aws_start_transription_job(input_job_name, input_audio_url)
     client = Aws::TranscribeService::Client.new
 
     resp = client.start_transcription_job({
       transcription_job_name: input_job_name,
       language_code: "en-US",
-      media_format: "mp4",
+      media_format: "mp3",
       media: {
-        media_file_uri: input_media_file_uri
+        media_file_uri: input_audio_url
       }
     })
 
-
-    # resp.transcription_job.transcription_job_status #=> String, one of "IN_PROGRESS", "FAILED", "COMPLETED"
-    # resp.transcription_job.transcript.transcript_file_uri #=> String
-    # resp.transcription_job.creation_time #=> Time
-    # resp.transcription_job.completion_time #=> Time
-    # resp.transcription_job.failure_reason #=> String
+    resp
   end
 end

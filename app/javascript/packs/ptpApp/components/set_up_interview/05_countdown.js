@@ -71,7 +71,7 @@ class Countdown extends React.Component {
       setTimeout(
         () => {
           clearInterval(this.timerID);
-          browserHistory.push('/set_up_interview/countdown2');
+          browserHistory.push('/conduct_interview');
           },
         1000
       );
