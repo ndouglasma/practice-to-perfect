@@ -25,7 +25,7 @@ module AwsTranscribeHelper
       transcription_job_name: input_job_name
     })
 
-    return resp.transcription_job.transcription_job_status
+    return resp
   end
 
   def aws_start_transcribe_job(input_job_name, input_audio_url)

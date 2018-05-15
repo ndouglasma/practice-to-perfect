@@ -9,11 +9,14 @@ class Api::V1::MockInterviewsController < ApplicationController
     @mock_interview = MockInterview.find(params[:id])
 
     @mock_interview.user_responses.each do |user_response|
-      # query for AWS transcribe job status
+      # query for AWS transcribe job status and update the individual response accordingly
       response = aws_get_transcribe_job_status(user_response.aws_transcribe_job_name)
-      user_response.update_transcribe_job_status(response)
-      if response === 'NOT_FOUND'
-        puts 'ERROR'
+
+      case response.transcription_job.transcription_job_status
+      when 'COMPLETED'
+        user_response.update_transcribe_job_status(response.transcription_job.transcription_job_status, response.transcription_job.transcript.transcript_file_uri, response.transcription_job.creation_time, response.transcription_job.completion_time)
+      when 'FAILED'
+        puts response.transcription_job.failure_reason
       end
     end
 
@@ -58,7 +61,6 @@ class Api::V1::MockInterviewsController < ApplicationController
 
 
     # if user selected category 'Just Surprise Me', that will be the only category linked to interview; therefore candidate_questions = all questions in DB
-    # binding.pry
     if(@new_mock_interview.user_selected_categories[0].question_category_id === 6)
       grab_candidate_questions = Question.all
       candidate_questions = grab_candidate_questions.to_ary
@@ -77,7 +79,6 @@ class Api::V1::MockInterviewsController < ApplicationController
 
         # make sure at least 1 of the category questions gets selected
         random_index = rand(0..category_questions.length-1)
-        # binding.pry
         random_question = category_questions.slice!(random_index)
         interview_questions.push(random_question)
 
@@ -92,7 +93,6 @@ class Api::V1::MockInterviewsController < ApplicationController
         num_more_questions_needed.times do
           random_index = rand(0..candidate_questions.length-1)
           random_question = candidate_questions.slice!(random_index)
-          # binding.pry
           interview_questions.push(random_question)
         end
       end

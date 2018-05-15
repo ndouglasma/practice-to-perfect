@@ -49,6 +49,9 @@ ActiveRecord::Schema.define(version: 2018_05_12_123141) do
     t.time "audio_start_time"
     t.time "audio_stop_time"
     t.string "aws_transcribe_job_name"
+    t.string "aws_transcribe_transcript_file_uri"
+    t.time "aws_transcribe_creation_time"
+    t.time "aws_transcribe_completion_time"
     t.string "aws_transcribe_job_status", default: "NOT_STARTED"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
