@@ -74,8 +74,9 @@ class Question extends React.Component {
 				formData.append('user_id', this.props.mockInterviewDetails.user_id);
 				formData.append('mock_interview_id', this.props.mockInterviewDetails.id);
 				formData.append('question_id', this.props.mockInterviewQuestions[this.state.currentQuestionIndex].id);
+				formData.append('aws_transcribe_job_name', 'launch-academy-interview-user-response-user-U1M4-Q17-UR2');
 
-				fetch('/api/v1/user_response', {
+				fetch('/api/v1/user_responses', {
 					credentials: 'same-origin',
 				  method: 'POST',
 				  body: formData,

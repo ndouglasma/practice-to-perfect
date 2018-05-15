@@ -1,8 +1,24 @@
 require 'json'
 
 class Api::V1::MockInterviewsController < ApplicationController
-  include AwsS3Helper
+  include AwsTranscribeHelper
   skip_before_action :verify_authenticity_token, only: [:create]
+
+  def show
+    # Kick off process to get status of each user response
+    @mock_interview = MockInterview.find(params[:id])
+
+    @mock_interview.user_responses.each do |user_response|
+      # query for AWS transcribe job status
+      response = aws_get_transcribe_job_status(user_response.aws_transcribe_job_name)
+      user_response.update_transcribe_job_status(response)
+      if response === 'NOT_FOUND'
+        puts 'ERROR'
+      end
+    end
+
+    render json: @mock_interview, serializer: MockInterviewShowSerializer
+  end
 
   def create
     ActiveRecord::Base.transaction do
