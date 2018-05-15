@@ -22,6 +22,7 @@ import Rules from './components/set_up_interview/04_rules';
 import Countdown from './components/set_up_interview/05_countdown';
 import ConductInterview from './components/conduct_interview/conduct_interview';
 import Question from './components/conduct_interview/question';
+import Complete from './components/conduct_interview/complete';
 
 import rootReducer from './reducers/index';
 import rootSaga from './sagas/sagas';
@@ -79,6 +80,7 @@ const App = (props) => (
 				<Route path='conduct_interview' component={ ConductInterview }>
 					<IndexRoute component={ Question } />
 					<Route path='question' component={ Question } />
+					<Route path='complete' component={ Complete } />
 				</Route>
       </Route>
     </Router>

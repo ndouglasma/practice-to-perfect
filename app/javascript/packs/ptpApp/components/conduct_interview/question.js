@@ -1,8 +1,9 @@
 // External Dependencies
 import React from 'react';
-import { Button, Grid, Header, Icon } from 'semantic-ui-react';
+import { Button, Grid, Header, Icon, Message } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { ReactMic } from 'react-mic';
+import { browserHistory  } from 'react-router';
 
 // Internal Dependencies
 
@@ -14,13 +15,17 @@ class Question extends React.Component {
     super(props)
     this.state = {
 			currentQuestionIndex: 0,
+			currentQuestionAudioCaptured: false,
 			recordAudio: false,
 			blobAudio: null,
 			blobURL: null,
 			blobSize: null,
 			blobType: null,
 			blobStartTime: null,
-			blobStopTime: null
+			blobStopTime: null,
+			showResponseWarning: false,
+			warningMsg: '',
+			showSuccessStatus: false
     };
 	};
 
@@ -37,7 +42,10 @@ class Question extends React.Component {
 	  }
 
 		onStart = () => {
-	    console.log('You can tap into the onStart callback');
+			this.setState({
+				showResponseWarning: false,
+				warningMsg: ''
+			});
 	  }
 
 	  onStop = (blobAudio) => {
@@ -85,8 +93,11 @@ class Question extends React.Component {
 				})
 				.then(response => response.json())
 				.then(body => {
-					console.log('MADE IT HERE');
 					console.log(body);
+					this.setState({
+						currentQuestionAudioCaptured: true,
+						showSuccessStatus: true
+					});
 				})
 				.catch(error => console.error(`Error in fetch: ${error.message}`));
 			};
@@ -94,16 +105,26 @@ class Question extends React.Component {
 		};
 
 		handleButtonClick = (clickAction) => {
+			const { currentQuestionIndex, currentQuestionAudioCaptured } = this.state;
+
 			if (clickAction === 'next') {
-				// Adding 1 because question array starts at 0
-				if (this.state.currentQuestionIndex + 1 < this.props.selectedNumQuestions) {
+				if ((currentQuestionIndex + 1 < this.props.selectedNumQuestions) && (currentQuestionAudioCaptured === true)) {
 					this.setState({
-						currentQuestionIndex: this.state.currentQuestionIndex + 1
+						currentQuestionIndex: this.state.currentQuestionIndex + 1,
+						currentQuestionAudioCaptured: false,
+						showSuccessStatus: false
 					});
 				}
+				else if ((currentQuestionIndex + 1 === this.props.selectedNumQuestions) && (currentQuestionAudioCaptured === true)) {
+					// Done with interview and answered last question
+					browserHistory.push('/conduct_interview/complete');
+				}
 				else {
-					// Done with interview
-					console.log('DONE WITH INTERVIEW');
+					// User hasn't answered question.  Send message.
+					this.setState({
+						showResponseWarning: true,
+						warningMsg: 'We need your response in order to proceed.'
+					});
 				}
 			}
 		};
@@ -114,11 +135,43 @@ class Question extends React.Component {
 		}
 	};
 
+	handleWarningDismiss = () => {
+		this.setState({ showResponseWarning: false })
+	};
+
+	handleSuccessDismiss = () => {
+		this.setState({ showSuccessStatus: false })
+	};
+
 	render() {
-		let handleNextClick = () => { console.log('Got action'); this.handleButtonClick('next'); }
+		const { currentQuestionAudioCaptured, showResponseWarning, showSuccessStatus } = this.state;
+
+		let handleNextClick = () => { this.handleButtonClick('next'); }
+
+		const ResponseWarning = () => (
+			<Message negative
+				onDismiss={ this.handleWarningDismiss }
+				icon='warning'
+				header='Response Required'
+				content={ this.state.warningMsg }
+			/>
+		);
+
+		const ShowResponseSuccess = () => (
+			<Message success
+				onDismiss={ this.handleSuccessDismiss }
+				icon='checkmark'
+				header='Audio Success'
+				content= "Great!  Your audio test worked.  Please proceed by hitting the 'Next' button."
+			/>
+		);
 
 		return (
 			<div id ='questions'>
+				<Grid.Row>
+					{ showResponseWarning ? <ResponseWarning /> : null }
+					{ showSuccessStatus ? <ShowResponseSuccess /> : null }
+				</Grid.Row>
 				<Grid.Row id='displayed-question-progress'>
 					<h2>Question { this.state.currentQuestionIndex + 1 } of { this.props.selectedNumQuestions }</h2>
 					<br />

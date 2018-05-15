@@ -22,7 +22,7 @@ class UserResponseUploader < CarrierWave::Uploader::Base
   end
 
   def generate_mp3
-    `ffmpeg -i "#{self.file.path}" "#{self.file.path.gsub(".weba", ".mp3")}"`
+    response = `ffmpeg -i "#{self.file.path}" "#{self.file.path.gsub(".weba", ".mp3")}"`
   end
 
   def store_dir

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@rails/webpacker": "3.4",
+    "blob-to-buffer": "^1.2.7",
     "immutable": "^3.8.2",
     "prop-types": "^15.6.1",
     "react": "^16.3.2",

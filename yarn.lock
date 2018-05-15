@@ -1187,6 +1187,10 @@ bl@~1.1.2:
   dependencies:
     readable-stream "~2.0.5"
 
+blob-to-buffer@^1.2.7:
+  version "1.2.7"
+  resolved "https://registry.yarnpkg.com/blob-to-buffer/-/blob-to-buffer-1.2.7.tgz#bd8eee0aef300b509e2305ad752cde8c14e6499c"
+
 blob@0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/blob/-/blob-0.0.4.tgz#bcf13052ca54463f30f9fc7e95b9a47630a94921"
