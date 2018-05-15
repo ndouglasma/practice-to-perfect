@@ -22,7 +22,12 @@ class UserResponseUploader < CarrierWave::Uploader::Base
   end
 
   def generate_mp3
-    `ffmpeg -i "#{self.file.path}" "#{self.file.path.gsub(".weba", ".mp3")}"`
+    temp_path = current_path.gsub(".weba", ".mp3")
+    # ffmpeg -i inputfile.wav -acodec libmp3lame -f mp3 watermarked.mp3
+    puts "ffmpeg -i \"#{current_path}\" \"#{temp_path}\""
+    `ffmpeg -i "#{current_path}" "#{temp_path}"`
+    File.unlink(current_path)
+    FileUtils.mv(temp_path, current_path)
   end
 
   def store_dir

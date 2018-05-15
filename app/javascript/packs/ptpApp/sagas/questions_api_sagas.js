@@ -6,7 +6,7 @@ import * as actionTypes from '../actions/action_types';
 import * as selectors from './selectors';
 
 function fetchJson(formData) {
-  return fetch('/api/v1/mock_interview', {
+  return fetch('/api/v1/mock_interviews', {
 		credentials: 'same-origin',
 		method: 'POST',
 		body: formData
