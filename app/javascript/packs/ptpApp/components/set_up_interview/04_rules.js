@@ -11,7 +11,7 @@ class Rules extends React.Component {
     }
 	};
 
-	handleButtonClick(clickAction) => {
+	handleButtonClick = (clickAction) => {
 		console.log(clickAction);
 
 		if (clickAction === 'back') {
