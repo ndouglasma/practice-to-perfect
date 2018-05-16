@@ -6,7 +6,6 @@
     "test": "node_modules/.bin/karma start karma.conf.js"
   },
   "engines": {
-    "node": ">=6.0.0",
     "yarn": ">=0.25.2"
   },
   "dependencies": {
