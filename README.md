@@ -4,10 +4,43 @@
 
 # README
 
-Practice makes perfect, and with the Practice to Perfect app, you can get the necessary practice to crush all your interviews.  Practice to Perfect gives you access to a database of interview question types (behavioral, problem-solving, motivational, technical/skills-based, and informational) and transcribes your audio answers to text for you to review.
+
+## Overview
+
+Practice makes perfect, and with the **Practice to Perfect** app, you can get the necessary practice to crush all your interviews.  **Practice to Perfect** gives you access to a database of interview question types (behavioral, problem-solving, motivational, technical/skills-based, and informational) and transcribes your audio answers to text.  You can use your progress reports of analyzed text to hone in on areas of improvement.  The app uses GitHub OAuth so users may log in with their GitHub ID.  Semantic-UI, React-Router, and Redux are also incorporated to extend the single page experience for users.  To process audio, the app uses Amazon Web Services' S3 to store media files; and Transcribe to convert audio interview responses to JSON.
 
 
-Credits
+### Deployed Site
 
-Photos
-<a style="background-color:black;color:white;text-decoration:none;padding:4px 6px;font-family:-apple-system, BlinkMacSystemFont, &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, Helvetica, Ubuntu, Roboto, Noto, &quot;Segoe UI&quot;, Arial, sans-serif;font-size:12px;font-weight:bold;line-height:1.2;display:inline-block;border-radius:3px;" href="https://unsplash.com/@cytonn_photography?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge" target="_blank" rel="noopener noreferrer" title="Download free do whatever you want high-resolution photos from Cytonn Photography"><span style="display:inline-block;padding:2px 3px;"><svg xmlns="http://www.w3.org/2000/svg" style="height:12px;width:auto;position:relative;vertical-align:middle;top:-1px;fill:white;" viewBox="0 0 32 32"><title>unsplash-logo</title><path d="M20.8 18.1c0 2.7-2.2 4.8-4.8 4.8s-4.8-2.1-4.8-4.8c0-2.7 2.2-4.8 4.8-4.8 2.7.1 4.8 2.2 4.8 4.8zm11.2-7.4v14.9c0 2.3-1.9 4.3-4.3 4.3h-23.4c-2.4 0-4.3-1.9-4.3-4.3v-15c0-2.3 1.9-4.3 4.3-4.3h3.7l.8-2.3c.4-1.1 1.7-2 2.9-2h8.6c1.2 0 2.5.9 2.9 2l.8 2.4h3.7c2.4 0 4.3 1.9 4.3 4.3zm-8.6 7.5c0-4.1-3.3-7.5-7.5-7.5-4.1 0-7.5 3.4-7.5 7.5s3.3 7.5 7.5 7.5c4.2-.1 7.5-3.4 7.5-7.5z"></path></svg></span><span style="display:inline-block;padding:2px 3px;">Cytonn Photography</span></a>
+[Practice to Perfect Running on Heroku](https://practice-to-perfect.herokuapp.com/)
+
+
+## Features
+
+
+## Setup
+
+### To set up on local machine:
+
+
+### To test:
+
+
+## Built With
+
+- [React](https://reactjs.org/) - Front-end Library for User Interface
+- [Semantic UI React](https://react.semantic-ui.com) - Front-end Development Framework
+- [Redux](https://redux.js.org/) - Front-end State Management
+- [React-Router v3](https://github.com/ReactTraining/react-router/tree/v3/docs) - Front-end Routing Library
+- [Ruby on Rails](https://rubyonrails.org/)  - Back-end Server
+- [Bundler](https://bundler.io/) - Ruby Gem Package Management
+- [Yarn](https://yarnpkg.com/en/) - JS Package Management
+- [Heroku](https://www.heroku.com/) - Production Cloud Application Platform
+- [PostgreSQL](https://www.postgresql.org) - Database
+- [GitHub OAuth](https://developer.github.com/apps/building-oauth-apps/) - User Authentication Integration
+
+
+## Acknowledgments
+- [Launch Academy](https://www.launchacademy.com/) - To all the instructors, fellow classmates and mentors - THANKS!
+- [Dan Picket](https://github.com/dpickett) - How hard can it be to get an audio blob from the front-end to the back-end and then up to AWS S3?  I guess harder than I originally planned.  Thanks Dan for making this possible!
+- [Cytonn Photography](https://unsplash.com/@cytonn_photography?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge)

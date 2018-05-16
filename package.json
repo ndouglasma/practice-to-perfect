@@ -42,7 +42,6 @@
     "karma-webpack": "^3.0.0",
     "phantomjs-prebuilt": "^2.1.16",
     "react-addons-test-utils": "^15.6.2",
-    "redux-logger": "^3.0.6",
     "redux-mock-store": "^1.5.1",
     "webpack-cli": "^2.0.15",
     "webpack-dev-server": "^2.11.1"
