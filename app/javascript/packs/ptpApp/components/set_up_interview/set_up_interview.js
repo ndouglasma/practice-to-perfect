@@ -11,16 +11,12 @@ class SetUpInterview extends React.Component {
 
 	render() {
 		return (
-			<Grid id='set-up-interview'>
-				<Grid.Row>
-					<h1>Set Up Your Interview</h1>
-					<br/>
-					<br/>
-				</Grid.Row>
-				<Grid.Row>
-					{ this.props.children }
-				</Grid.Row>
-			</Grid>
+			<div id='set-up-interview'>
+				<h1>Set Up Your Interview</h1>
+				<br/>
+				<br/>
+				{ this.props.children }
+			</div>
 		);
 	}
 };

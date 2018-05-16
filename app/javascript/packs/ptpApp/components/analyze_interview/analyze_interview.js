@@ -13,7 +13,7 @@ class AnalyzeInterview extends React.Component {
 		return (
 			<Grid id='analyze-interview'>
 				<Grid.Row>
-					<h1>Interview in Progress</h1>
+					<h1>Here are Your Results</h1>
 					<br/>
 					<br/>
 				</Grid.Row>
