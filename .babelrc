@@ -1,1 +1,7 @@
-{ "presets": [["react"]] }
+{
+  "presets": [
+    [
+      "react"
+    ]
+  ]
+}
