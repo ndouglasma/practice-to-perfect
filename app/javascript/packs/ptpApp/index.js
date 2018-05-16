@@ -1,5 +1,6 @@
 //External Dependencies
 import React from 'react';
+import 'babel-polyfill';
 import { render } from 'react-dom';
 import { browserHistory, IndexRoute, Route, Router } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
