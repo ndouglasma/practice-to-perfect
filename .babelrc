@@ -21,7 +21,6 @@
       {
         "spec": true
       }
-    ],
-    ["transform-runtime", { "polyfill": false }]
+    ]
   ]
 }
