@@ -1,11 +1,10 @@
 //External Dependencies
 import React from 'react';
-import { Container } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 import { Link } from 'react-router';
 
 //Internal Dependencies
 import Header from '../header/header';
-import Footer from '../footer/footer';
 
 class Layout extends React.Component {
   constructor(props){
@@ -18,10 +17,13 @@ class Layout extends React.Component {
     return(
       <div id='layout-container'>
         <Header />
-        <div id='body'>
-          { this.props.children }
-        </div>
-        <Footer />
+        <Grid id='body'>
+          <Grid.Column width={3}></Grid.Column>
+          <Grid.Column width={10}>
+            { this.props.children }
+          </Grid.Column>
+          <Grid.Column width={3}></Grid.Column>
+        </Grid>
       </div>
     )
   }

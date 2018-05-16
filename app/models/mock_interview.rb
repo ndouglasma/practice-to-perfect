@@ -33,7 +33,7 @@ class MockInterview < ApplicationRecord
     elsif num_not_started > 0 || num_in_progress > 0
       mock_interview_transcribe_status = 'IN_PROGRESS'
     elsif num_complete === selected_num_questions
-      mock_interview_transcribe_status = 'COMPLETE'
+      mock_interview_transcribe_status = 'COMPLETED'
     else
       mock_interview_transcribe_status = 'FAILED'
     end

@@ -15,6 +15,8 @@ class Api::V1::MockInterviewsController < ApplicationController
       case response.transcription_job.transcription_job_status
       when 'COMPLETED'
         user_response.update_transcribe_job_status(response.transcription_job.transcription_job_status, response.transcription_job.transcript.transcript_file_uri, response.transcription_job.creation_time, response.transcription_job.completion_time)
+      when 'IN_PROGRESS'
+        user_response.update_transcribe_job_status(response.transcription_job.transcription_job_status)
       when 'FAILED'
         puts response.transcription_job.failure_reason
       end

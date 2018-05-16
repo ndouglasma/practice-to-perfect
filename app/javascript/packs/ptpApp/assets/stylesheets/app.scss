@@ -1,12 +1,17 @@
 @import 'components/layout/layout';
 @import 'components/user_auth/login';
 @import 'components/header/header';
-@import 'components/footer/footer';
+@import 'components/overview/overview';
 @import 'components/set_up_interview/set_up_interview';
 @import 'components/set_up_interview/04_rules';
 @import 'components/set_up_interview/05_countdown';
 @import 'components/conduct_interview/question';
+@import 'components/analyze_interview/interview_summary';
 
 .nav-button.next {
-float: right;
+  float: right;
+}
+
+.summary-info {
+  display: inline-block;
 }

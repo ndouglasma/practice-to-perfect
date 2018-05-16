@@ -23,6 +23,8 @@ import Countdown from './components/set_up_interview/05_countdown';
 import ConductInterview from './components/conduct_interview/conduct_interview';
 import Question from './components/conduct_interview/question';
 import Complete from './components/conduct_interview/complete';
+import AnalyzeInterview from './components/analyze_interview/analyze_interview';
+import InterviewSummary from './components/analyze_interview/interview_summary';
 
 import rootReducer from './reducers/index';
 import rootSaga from './sagas/sagas';
@@ -81,6 +83,10 @@ const App = (props) => (
 					<IndexRoute component={ Question } />
 					<Route path='question' component={ Question } />
 					<Route path='complete' component={ Complete } />
+				</Route>
+				<Route path='analyze_interview' component={ AnalyzeInterview }>
+					<IndexRoute component={ InterviewSummary } />
+					<Route path='interview-summary' component={ InterviewSummary } />
 				</Route>
       </Route>
     </Router>
