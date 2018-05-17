@@ -41,4 +41,4 @@ yarn-debug.log*
 /public/uploads
 
 # Ignore seeds file
-/db/seeds/01_personal_seeds.rb
+/db/seeds/02_nat_seeds.rb

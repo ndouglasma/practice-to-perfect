@@ -2,11 +2,16 @@
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
 import { Button, Divider, Grid, Icon, Segment } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+
+// Internal Dependencies
+import { requestUserInterviewsAPI } from "../../actions/user_action";
 
 class Login extends React.Component {
 	constructor(props){
     super(props)
     this.state = {
+			userInterviews: []
     }
 	}
 
@@ -33,4 +38,12 @@ class Login extends React.Component {
 	}
 }
 
-export default Login;
+const mapDispatchToProps = (dispatch) => {
+	return {
+		requestUserInterviews: () => {
+			dispatch(requestUserInterviewsAPI());
+		}
+	};
+};
+
+export default connect(null, mapDispatchToProps)(Login);

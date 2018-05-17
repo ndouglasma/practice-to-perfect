@@ -37,7 +37,7 @@ class SelectCategories extends React.Component {
 			else {
 				this.setState({
 					errorStatus: true,
-					errorMessage: "You must select at least 1 category in order to proceed. If you are undecided, pick 'Just Surpise Me'"
+					errorMessage: "You must select at least 1 category in order to proceed. If you are undecided, pick 'Just Surprise Me'"
 				});
 			}
 		}
@@ -170,8 +170,8 @@ class SelectCategories extends React.Component {
 		return (
 			<div id ='select-categories'>
 				<Grid.Row>
-					<h2>Pick { this.props.selectedNumQuestions === 1 ? '1 category' : '1 - '.concat(this.props.selectedNumQuestions).toString().concat(' categories') } to cover in your interview.&ensp;Can&apos;t decide?&ensp;Pick &apos;Just Surpise Me&apos;.</h2>
-					<h3>Keep in mind if you select &apos;Just Surpise Me&apos;, you cannot select any other category.</h3>
+					<h2>Pick { this.props.selectedNumQuestions === 1 ? '1 category' : '1 - '.concat(this.props.selectedNumQuestions).toString().concat(' categories') } to cover in your interview.&ensp;Can&apos;t decide?&ensp;Pick &apos;Just Surprise Me&apos;.</h2>
+					<h3>Keep in mind if you select &apos;Just Surprise Me&apos;, you cannot select any other category.</h3>
 					<br />
 				</Grid.Row>
 				<Grid.Row>
