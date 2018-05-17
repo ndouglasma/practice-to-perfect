@@ -41,11 +41,6 @@ export function* requestQuestionsAPIAsync() {
   }
 	catch (error) {
 		console.error(`Error in fetch: ${error.message}`);
-		// yield put({
-		// 	type: 'FETCH_MEMES_ERROR',
-    //   payload: e,
-    //   error: true,
-    // });
   }
 }
 

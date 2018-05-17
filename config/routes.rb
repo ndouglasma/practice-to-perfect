@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
+      resources :users, only: [:show]
       resources :questions, only: [:index]
       resources :mock_interviews, only: [:show, :create]
       resources :user_responses, only: [:create]
