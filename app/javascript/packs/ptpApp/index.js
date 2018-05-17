@@ -6,8 +6,6 @@ import { browserHistory, IndexRoute, Route, Router } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-// import { createLogger } from 'redux-logger';
-// import logger from 'redux-logger';
 import Immutable from 'immutable';
 import { Provider } from 'react-redux';
 import 'semantic-ui-css/semantic.min.css';
@@ -40,7 +38,6 @@ const store = createStore(
 	composeEnhancers(
 		applyMiddleware(
 			sagaMiddleware
-			// logger
 		)
 	)
 );
