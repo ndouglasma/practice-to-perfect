@@ -72,9 +72,10 @@ ActiveRecord::Schema.define(version: 2018_05_12_123141) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.integer "github_id"
-    t.string "github_login"
-    t.string "github_avatar_url"
+    t.string "provider", default: "github", null: false
+    t.integer "github_id", null: false
+    t.string "github_login", null: false
+    t.string "github_avatar_url", null: false
     t.string "github_name"
     t.integer "sign_in_count", default: 0
     t.datetime "created_at", null: false
