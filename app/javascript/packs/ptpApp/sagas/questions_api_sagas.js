@@ -26,13 +26,16 @@ function fetchJson(formData) {
 export function* requestQuestionsAPIAsync() {
 	const selectedNumQuestions = yield select(selectors.selectedNumQuestions);
 	const selectedCategories = yield select(selectors.selectedCategories);
+  const userId = yield select(selectors.userId);
 
 	let formData  = new FormData();
 	formData.append('selected_num_questions', selectedNumQuestions);
 	formData.append('selected_categories', JSON.stringify(selectedCategories));
+  formData.append('user_id', userId);
 
 	try {
     const mockInterview = yield call(fetchJson, formData);
+    console.log(mockInterview);
 
 		yield put({
 			type: actionTypes.SUCCESS_QUESTIONSAPI,

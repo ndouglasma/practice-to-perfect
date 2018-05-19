@@ -1,7 +1,7 @@
 require 'aws-sdk-s3'
 
+# Used to invoke AWS S3 service through Ruby SDK
 module AwsS3Helper
-
   def aws_s3_bucket_exist?(input_bucket)
     bucket_exists = false
     # Get an Amazon S3 resource

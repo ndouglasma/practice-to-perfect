@@ -39,3 +39,15 @@ export function requestQuestionsAPI() {
 		type: actionTypes.REQUEST_QUESTIONSAPI
 	};
 }
+
+export function setTranscribeResults(json, status, totalLikes, totalUms, totalWords) {
+	console.log("About to launch setTranscribeResults");
+	return {
+		type: actionTypes.SET_TRANSCRIBE_RESULTS,
+		json: json,
+		status: status,
+		totalLikes: totalLikes,
+		totalUms: totalUms,
+		totalWords: totalWords
+	};
+}

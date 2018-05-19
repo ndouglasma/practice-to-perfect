@@ -20,8 +20,8 @@ function fetchJson(userId) {
 
 // Our worker sagas
 export function* requestUserInterviewsAPIAsync() {
-  const userId = 1;
-  // const userId = 2;
+  // const userId = 1;
+  const userId = 2;
 
 	try {
     const response = yield call(fetchJson, userId);

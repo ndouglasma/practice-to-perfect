@@ -221,9 +221,9 @@ class Question extends React.Component {
 
 const mapStateToProps = (state) => {
 	return {
-		selectedNumQuestions: state.get('interview').get('selectedNumQuestions'),
-		mockInterviewDetails: state.get('interview').get('mockInterview').get('mock_interview').toJS(),
-		mockInterviewQuestions: state.get('interview').get('mockInterview').get('questions').toJS()
+		selectedNumQuestions: state.get('mockInterview').get('selectedNumQuestions'),
+		mockInterviewDetails: state.get('mockInterview').get('details').toJS(),
+		mockInterviewQuestions: state.get('mockInterview').get('questions').toJS()
 	};
 };
 

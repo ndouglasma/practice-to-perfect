@@ -13,6 +13,7 @@ gem 'carrierwave'
 gem 'carrierwave-base64'
 # gem 'carrierwave-ffmpeg'
 gem 'fog-aws'
+gem 'httparty'
 gem 'jbuilder', '~> 2.5'
 gem "omniauth-github"
 gem 'pg', '>= 0.18', '< 2.0'

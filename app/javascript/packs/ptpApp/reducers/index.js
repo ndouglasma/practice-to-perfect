@@ -3,7 +3,7 @@ import { combineReducers } from 'redux-immutable';
 
 //Internal Dependencies*/
 import routerReducer from './router_reducer';
-import interviewReducer from './interview_reducer';
+import mockInterviewReducer from './mock_interview_reducer';
 import userReducer from './user_reducer';
 
 /**
@@ -15,7 +15,7 @@ import userReducer from './user_reducer';
 const rootReducer = combineReducers({
 	routing: routerReducer,
 	user: userReducer,
-	interview: interviewReducer
+	mockInterview: mockInterviewReducer
 });
 
 export default rootReducer;
