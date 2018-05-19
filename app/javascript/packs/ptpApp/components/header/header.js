@@ -1,6 +1,6 @@
 //External Dependencies
 import React from 'react';
-import { Grid, Header as SRHeader, Image } from 'semantic-ui-react';
+import { Grid, Header as SRHeader, Image, Modal } from 'semantic-ui-react';
 import { IndexLink, Link } from 'react-router';
 import { connect } from 'react-redux';
 
@@ -9,12 +9,18 @@ import ptpLogo from '../../assets/images/header/ptp_logo.png';
 import UserVerticalMenu from './user_vertical_menu';
 
 class Header extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {
+    }
+	}
+
   render() {
     const HeaderAuthenticated = () => (
       <Grid textAlign='center' verticalAlign='middle'>
         <Grid.Column width={4}><Link to='/overview'><SRHeader as='h4'>Overview</SRHeader></Link></Grid.Column>
         <Grid.Column width={4}><Link to='/set_up_interview'><SRHeader as='h4'>Start an Interview</SRHeader></Link></Grid.Column>
-        <Grid.Column width={4}><SRHeader as='h4'>My Responses</SRHeader></Grid.Column>
+        <Grid.Column width={4}><SRHeader as='h4' disabled>My Responses</SRHeader></Grid.Column>
         <Grid.Column width={4}><UserVerticalMenu /></Grid.Column>
       </Grid>
     );
