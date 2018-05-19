@@ -200,8 +200,8 @@ class SelectCategories extends React.Component {
 
 const mapStateToProps = (state) => {
 	return {
-		selectedNumQuestions: state.get('interview').get('selectedNumQuestions'),
-		selectedCategories: state.get('interview').get('selectedCategories')
+		selectedNumQuestions: state.get('mockInterview').get('selectedNumQuestions'),
+		selectedCategories: state.get('mockInterview').get('selectedCategories')
 	};
 };
 

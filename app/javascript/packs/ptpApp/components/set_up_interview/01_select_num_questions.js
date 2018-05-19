@@ -117,7 +117,7 @@ class SelectNumQuestions extends React.Component {
 const mapStateToProps = (state) => {
 	return {
 		currentLocation: state.get('routing').get('locationBeforeTransitions').get('pathname'),
-		selectedNumQuestions: state.get('interview').get('selectedNumQuestions')
+		selectedNumQuestions: state.get('mockInterview').get('selectedNumQuestions')
 	};
 };
 

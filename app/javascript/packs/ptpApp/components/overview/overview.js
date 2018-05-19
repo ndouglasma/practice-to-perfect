@@ -15,7 +15,7 @@ class Overview extends React.Component {
     }
 	}
 
-	componentDidMount = () => {
+	componentWillMount = () => {
 		this.props.requestUserInterviews();
 	};
 

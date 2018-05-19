@@ -9,9 +9,9 @@ CarrierWave.configure do |config|
       aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
     }
     if Rails.env.production?
-      config.fog_directory  = ENV['S3_BUCKET_LAUNCH_ACADEMY']
+      config.fog_directory  = ENV['S3_BUCKET']
     else
-      config.fog_directory  = ENV['S3_BUCKET_LAUNCH_ACADEMY']
+      config.fog_directory  = ENV['S3_BUCKET']
     end
   end
 end

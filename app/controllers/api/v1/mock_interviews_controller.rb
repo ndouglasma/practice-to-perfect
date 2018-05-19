@@ -27,22 +27,10 @@ class Api::V1::MockInterviewsController < ApplicationController
 
   def create
     ActiveRecord::Base.transaction do
-      # new_mock_interview = MockInterview.new()
-      # new_mock_interview.selected_num_questions = params[:selected_num_questions]
-      # new_mock_interview.user = User.first
-      # new_mock_interview.save!
-
-      # Save entries in user_selected_categories
-      # JSON.parse(params[:selected_categories]).each do |category|
-      #   # puts "The current array category is: #{category["id"]}"
-      #   new_user_selected_category = UserSelectedCategory.new(mock_interview: new_mock_interview, question_category_id: category["id"])
-      #   new_user_selected_category.save!
-      # end
-
       # use create so you have access to model
       @new_mock_interview = MockInterview.create!(
-        selected_num_questions: params[:selected_num_questions],
-        user: User.first
+        user_id: params[:user_id],
+        selected_num_questions: params[:selected_num_questions]
       )
       if @new_mock_interview.errors.full_messages.empty?
         # Save entries in user_selected_categories; can still access selected categories thorugh associations
@@ -106,6 +94,6 @@ class Api::V1::MockInterviewsController < ApplicationController
   private
 
   def mock_interviews_params
-    params.permit(:selected_num_questions, {selected_categories: [:id, :name]})
+    params.permit(:user_id, :selected_num_questions, {selected_categories: [:id, :name]})
   end
 end
