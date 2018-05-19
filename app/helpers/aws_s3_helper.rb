@@ -14,4 +14,13 @@ module AwsS3Helper
     end
     !!bucket_exists
   end
+
+  def aws_s3_url
+    s3_client = Aws::S3::Resource.new(region: ENV['AWS_REGION'])
+    bucket = s3_client.bucket(ENV['S3_BUCKET'])
+
+    bucket.objects.each do |name|
+      puts name.key
+    end
+  end
 end

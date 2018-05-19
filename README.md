@@ -41,7 +41,7 @@ Practice makes perfect, and with the **Practice to Perfect** app, you can get th
 
 
 ## Acknowledgments
-- [Launch Academy](https://www.launchacademy.com/) - To all the instructors, fellow classmates and mentors - THANKS!
+- [Launch Academy](https://www.launchacademy.com/) - To all the instructors, fellow classmates, and mentors - THANKS!
 - [Dan Picket](https://github.com/dpickett) - How hard can it be to get an audio blob from the front-end to the back-end and then up to AWS S3?  I guess harder than I originally planned.  Thanks Dan for making this possible!
 - [Libor Gabrhel](https://codepen.io/Libor_G/pen/BdZoXy) - I adapted Libor's React Flip Counter to count down from 5 seconds.
 - [Cytonn Photography](https://unsplash.com/@cytonn_photography?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge)
