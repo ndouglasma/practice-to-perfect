@@ -13,7 +13,7 @@ class Complete extends React.Component {
     this.state = {
 			userResponses: [],
 			mockInterviewTranscribeStatus: 'IN_PROGRESS',
-			displayHeader: "We're working to analyze your results.  Please stay tuned.",
+			displayHeader: "We're working to analyze your results.  This make take a few minutes.  Please stay tuned.",
 			displayNextButton: false
     }
 	};
