@@ -14,7 +14,7 @@ export default (state = initialState, action) => {
 	// console.log(action);
 	// console.log("action.type=[" +action.type +"]");
 	if (action.type === actionTypes.SUCCESS_USERINTERVIEWSAPI) {
-		console.log('GOT HERE SUCCESS_USERINTERVIEWSAPI REDUCER');
+		// console.log('GOT HERE SUCCESS_USERINTERVIEWSAPI REDUCER');
 		return state.merge({ //returning new state
 			user: action.user,
 			interviews: action.interviews

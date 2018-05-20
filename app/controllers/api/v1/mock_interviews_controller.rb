@@ -18,7 +18,7 @@ class Api::V1::MockInterviewsController < ApplicationController
       when 'IN_PROGRESS'
         user_response.update_transcribe_job_status(response.transcription_job.transcription_job_status)
       when 'FAILED'
-        puts response.transcription_job.failure_reason
+        # puts response.transcription_job.failure_reason
       end
     end
 
@@ -39,7 +39,7 @@ class Api::V1::MockInterviewsController < ApplicationController
           new_user_selected_category.save!
         end
       else
-        puts "Need to handle error"
+        # puts "Need to handle error"
       end
     end
 

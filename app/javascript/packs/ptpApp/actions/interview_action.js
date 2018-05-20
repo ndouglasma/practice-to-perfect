@@ -1,7 +1,7 @@
 import * as actionTypes from "./action_types";
 
 export function setSelectedNumQuestions(numQuestions) {
-	console.log(numQuestions);
+	// console.log(numQuestions);
 	return {
 		type: actionTypes.SET_NUM_QUESTIONS,
 		selectedNumQuestions: numQuestions
@@ -17,7 +17,7 @@ export function clearSelectedNumQuestions() {
 
 export function setSelectedCategories(categories) {
 	categories.forEach((elem, index) => {
-		console.log(elem.id + ' ' + elem.name);
+		// console.log(elem.id + ' ' + elem.name);
   });
 
 	return {
@@ -34,14 +34,14 @@ export function clearSelectedCategories() {
 };
 
 export function requestQuestionsAPI() {
-	console.log("About to launch requestQuestionsAPI");
+	// console.log("About to launch requestQuestionsAPI");
 	return {
 		type: actionTypes.REQUEST_QUESTIONSAPI
 	};
 }
 
 export function setTranscribeResults(json, status, totalLikes, totalUms, totalWords) {
-	console.log("About to launch setTranscribeResults");
+	// console.log("About to launch setTranscribeResults");
 	return {
 		type: actionTypes.SET_TRANSCRIBE_RESULTS,
 		json: json,

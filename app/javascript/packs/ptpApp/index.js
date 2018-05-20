@@ -12,7 +12,7 @@ import 'semantic-ui-css/semantic.min.css';
 
 //Internal Dependencies
 import Layout from './components/layout/layout';
-import Login from './components/user_auth/login';
+// import Login from './components/user_auth/login';
 import Overview from './components/overview/overview';
 import SetUpInterview from './components/set_up_interview/set_up_interview';
 import SelectNumQuestions from './components/set_up_interview/01_select_num_questions';
@@ -67,8 +67,7 @@ const App = (props) => (
   <Provider store={store}>
     <Router history={history}>
       <Route path='/' component={ Layout }>
-        <IndexRoute component={ Login } />
-        <Route path='login' component={ Login } />
+        <IndexRoute component={ Overview } />
         <Route path='overview' component={ Overview } />
         <Route path='set_up_interview' component={ SetUpInterview }>
 					<IndexRoute component={ SelectNumQuestions } />

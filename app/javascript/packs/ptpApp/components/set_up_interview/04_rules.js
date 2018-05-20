@@ -12,7 +12,7 @@ class Rules extends React.Component {
 	};
 
 	handleButtonClick = (clickAction) => {
-		console.log(clickAction);
+		// console.log(clickAction);
 
 		if (clickAction === 'back') {
 			browserHistory.goBack();

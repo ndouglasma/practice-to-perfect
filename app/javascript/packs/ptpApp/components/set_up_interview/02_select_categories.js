@@ -86,8 +86,8 @@ class SelectCategories extends React.Component {
 				}
 				//check if user is about to exceed their allotted number of selected categories based on number of questions for the interview.
 				//if so, display warning message.
-				console.log('this.state.selectedCategories.length=[' + this.state.selectedCategories.length +']');
-				console.log('this.props.selectedNumQuestions=[' + this.props.selectedNumQuestions +']');
+				// console.log('this.state.selectedCategories.length=[' + this.state.selectedCategories.length +']');
+				// console.log('this.props.selectedNumQuestions=[' + this.props.selectedNumQuestions +']');
 				if (this.state.selectedCategories.length + 1 <= this.props.selectedNumQuestions) {
 					categories.push({id: categoryId, name: categoryName});
 				}

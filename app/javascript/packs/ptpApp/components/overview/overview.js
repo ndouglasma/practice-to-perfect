@@ -87,7 +87,7 @@ class Overview extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-	console.log('GOT IN mapStateToProps');
+	// console.log('GOT IN mapStateToProps');
 	return {
 		user: state.get('user').get('user').toJS(),
 		interviews: state.get('user').get('interviews').toJS()

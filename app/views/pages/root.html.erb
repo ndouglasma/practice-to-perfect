@@ -1,1 +1,29 @@
-<div id="ptp-app"></div>
+<% if current_user %>
+  <div id='ptp-app'></div>
+
+<% else %>
+  <div class="ui grid" id='login'>
+    <div class="three wide column"></div>
+    <div class="ten wide column">
+      <div class='ui padded segment' id='welcome-message'>
+          <div id='blur-block'>
+            <h2>Practice to Perfect</h2>
+            <h3>Be intentional.  Be prepared.</h3>
+            <h3>All in a low stakes environment.</h3>
+            <div class='ui divider horizontal'>
+            <button class='ui button'>
+              <%= link_to 'Log in with Github', '/auth/github' %>
+            </button>
+          </div>
+        </div>
+      </div>
+      <br />
+      <br />
+      <div class='ui padded segment'>
+        <p>Practice makes perfect, and with the Practice to Perfect app, you can get the necessary practice to crush all your interviews. Practice to Perfect gives you access to a database of interview question types (behavioral, problem-solving, motivational, technical/skills-based, and informational) and transcribes your audio answers to text for you to review.</p>
+      </div>
+
+    </div>
+    <div class="three wide column"></div>
+  </div>
+<% end %>

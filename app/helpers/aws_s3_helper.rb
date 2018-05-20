@@ -20,7 +20,7 @@ module AwsS3Helper
     bucket = s3_client.bucket(ENV['S3_BUCKET'])
 
     bucket.objects.each do |name|
-      puts name.key
+      # puts name.key
     end
   end
 end
