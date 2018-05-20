@@ -15,11 +15,12 @@ gem 'carrierwave-base64'
 gem 'fog-aws'
 gem 'httparty'
 gem 'jbuilder', '~> 2.5'
-gem "omniauth-github"
+gem 'omniauth-github', '~> 1.3'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.0'
 gem 'sass-rails', '~> 5.0'
+gem 'semantic-ui-sass', '~> 2.3', '>= 2.3.1.2'
 gem 'uglifier', '>= 1.3.0'
 gem 'webpacker', '~> 3.5', '>= 3.5.3'
 

@@ -35,7 +35,7 @@ export function* requestQuestionsAPIAsync() {
 
 	try {
     const mockInterview = yield call(fetchJson, formData);
-    console.log(mockInterview);
+    // console.log(mockInterview);
 
 		yield put({
 			type: actionTypes.SUCCESS_QUESTIONSAPI,

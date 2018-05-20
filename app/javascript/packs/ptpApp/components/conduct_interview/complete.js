@@ -26,16 +26,16 @@ class Complete extends React.Component {
 		// Preliminary attempt at this function will repeat the checkMockInterviewTranscribeStatus up to 4 times in hopes all transcribe jobs are complete
 		// In future will incorporate more robust functionality to handle the possibility a job may fail or take long
 		// repeat with the interval of 2 seconds
-		console.log('INSIDE componentDidUpdate');
+		// console.log('INSIDE componentDidUpdate');
 		setTimeout(()=>{
     	this.checkMockInterviewTranscribeStatus();
 		},180000);
 	}
 
 	checkMockInterviewTranscribeStatus = () => {
-		console.log('running checkMockInterviewTranscribeStatus');
+		// console.log('running checkMockInterviewTranscribeStatus');
 		const d = new Date();
-		console.log(d);
+		// console.log(d);
 		fetch(`/api/v1/mock_interviews/${this.props.mockInterviewId}`)
     .then(response => {
       if (response.ok) {
@@ -51,8 +51,8 @@ class Complete extends React.Component {
     })
     .then(response => response.json())
     .then(body => {
-			console.log('Transcribe Status=[' + body.transcribe_results.status + ']');
-			console.log(body);
+			// console.log('Transcribe Status=[' + body.transcribe_results.status + ']');
+			// console.log(body);
 			this.setState({
 				// userResponses: body.user_response_list,
 				// mockInterviewTranscribeStatus: body.transcribe_results.status

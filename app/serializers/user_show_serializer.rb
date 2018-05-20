@@ -123,7 +123,7 @@ class UserShowSerializer < ActiveModel::Serializer
         :count => num_info
       }
     ]
-    
+
     return list
   end
 end

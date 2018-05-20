@@ -18,8 +18,8 @@ const initialState = Immutable.fromJS({
 });
 
 export default (state = initialState, action) => {
-	console.log(action);
-	console.log("action.type=[" +action.type +"]");
+	// console.log(action);
+	// console.log("action.type=[" +action.type +"]");
 	if (action.type === actionTypes.SET_NUM_QUESTIONS) {
 		return state.merge({
 			selectedNumQuestions: action.selectedNumQuestions

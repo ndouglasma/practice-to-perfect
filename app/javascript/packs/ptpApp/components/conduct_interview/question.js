@@ -94,7 +94,7 @@ class Question extends React.Component {
 				})
 				.then(response => response.json())
 				.then(body => {
-					console.log(body);
+					// console.log(body);
 					this.setState({
 						currentQuestionAudioCaptured: true,
 						showSuccessStatus: true

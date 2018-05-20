@@ -50,7 +50,7 @@ class ConfirmAudio extends React.Component {
 	};
 
 	handleButtonClick = (clickAction) => {
-		console.log(clickAction);
+		// console.log(clickAction);
 		let errorMsg = '';
 
 		if (clickAction === 'back') {

@@ -6,13 +6,15 @@ import * as actionTypes from '../actions/action_types';
 import * as selectors from './selectors';
 
 function fetchJson(userId) {
-  return fetch(`/api/v1/users/${userId}`)
+  // console.log('CALLING FETCH');
+  return fetch('/api/v1/users', { credentials: 'same-origin' })
   .then(response => {
     if (!response.ok) {
 			let errorMessage = `${response.status} (${response.statusText})`, error = new Error(errorMessage);
 			throw(error);
     }
 		else {
+      // console.log(response);
 			return response.json();
 		}
   });
@@ -20,11 +22,9 @@ function fetchJson(userId) {
 
 // Our worker sagas
 export function* requestUserInterviewsAPIAsync() {
-  // const userId = 1;
-  const userId = 2;
-
 	try {
-    const response = yield call(fetchJson, userId);
+    // const response = yield call(fetchJson, userId);
+    const response = yield call(fetchJson);
 
     let user = {};
     user.id = response.id;
@@ -40,6 +40,8 @@ export function* requestUserInterviewsAPIAsync() {
     interviews.first_and_last_interview_dates = response.first_and_last_interview_dates;
     interviews.user_interview_list = response.user_interview_list.interviews;
     interviews.category_counts = response.user_interview_list.category_counts;
+    // console.log(user);
+    // console.log(interviews);
 
 		yield put({
 			type: actionTypes.SUCCESS_USERINTERVIEWSAPI,

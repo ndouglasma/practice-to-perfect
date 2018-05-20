@@ -17,7 +17,7 @@ class SelectNumQuestions extends React.Component {
 	};
 
 	handleButtonClick = (clickAction) => {
-		console.log(clickAction);
+		// console.log(clickAction);
 		if (clickAction === 'clear') {
 			this.setState({
 				selectedNum: 0,
@@ -42,7 +42,7 @@ class SelectNumQuestions extends React.Component {
 	};
 
 	handleChange = (e, { value } ) => {
-		console.log(value);
+		// console.log(value);
 		this.setState({
 			selectedNum: value,
 			errorStatus: false
@@ -51,11 +51,6 @@ class SelectNumQuestions extends React.Component {
 
   render() {
     const numQuestions = [ 1, 2, 3, 4];
-		// 	{ key: 1, text: '1 Question', value: 1 },
-		// 	{ key: 2, text: '2 Questions', value: 2 },
-		// 	{ key: 3, text: '3 Questions', value: 3 },
-		// 	{ key: 4, text: '4 Questions', value: 4 },
-		// ];
 
 		let numQuestionsOptions = numQuestions.map(num => {
       let active=false;

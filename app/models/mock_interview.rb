@@ -19,7 +19,7 @@ class MockInterview < ApplicationRecord
         num_complete += 1
       when 'FAILED'
         num_failed += 1
-        puts 'FAILED transcribe job'
+        # puts 'FAILED transcribe job'
       when 'NOT_STARTED'
         num_not_started += 1
       when 'IN_PROGRESS'
