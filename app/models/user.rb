@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  validates :provider, presence: true, inclusion: { in: ["github"] }
   validates :github_id, presence: true, exclusion: { in: [nil] }
   validates :github_login, presence: true, exclusion: { in: [nil] }, uniqueness: { case_sensitive: false }
   validates_format_of :github_avatar_url, presence: true, exclusion: { in: [nil] }, with: URI::regexp(["http", "https"])
@@ -10,7 +9,6 @@ class User < ApplicationRecord
 
   def self.create_from_omniauth(auth)
     find_or_create_by(
-      provider: auth.provider,
       github_id: auth.uid,
       github_login: auth.info.nickname,
       github_avatar_url: auth.info.image,
