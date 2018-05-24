@@ -4,9 +4,8 @@
 @import "semantic-ui";
 
 #welcome-message {
-   // background-image: url('handshake.jpg');
-   background-image: url('handshake.jpg');
-   background-repeat: no-repeat;
+   margin: 20px;
+   background-image: image-url('handshake.jpg');
    background-repeat: no-repeat;
    background-size: 100%;
    @media (min-width: 960px) {
@@ -15,10 +14,20 @@
    @media (min-width: 680px) {
      padding: 6rem;
    }
-   padding: 2rem;
+   // padding: 2rem;
+}
+
+#welcome-message .ui.huge.header {
+  color: #56184C;
+}
+
+#about-message {
+  margin: 20px;
+  text-align: center;
 }
 
 #blur-block {
   background: #FFBA49;
   padding: 20px;
+  opacity: 0.8;
 }
