@@ -11,11 +11,11 @@ class SessionsController < ApplicationController
     if user.persisted?
       user.update_from_omniauth(auth)
       session[:user_id] = user.id
-
-      # jwt = Auth.encode_id(user.id)
-      # redirect_to(ENV['PTP_CLIENT_URL'] + "?token=#{jwt}")
-      redirect_to root_url
-      flash[:notice] = "You are now signed in!"
+      
+      jwt = Auth.encode_id(user.id)
+      redirect_to(ENV['PTP_CLIENT_URL'] + "?token=#{jwt}")
+      # redirect_to root_url
+      # flash[:notice] = "You are now signed in!"
     end
   end
 

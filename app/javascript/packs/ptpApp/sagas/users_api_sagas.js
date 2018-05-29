@@ -6,8 +6,25 @@ import * as actionTypes from '../actions/action_types';
 import * as selectors from './selectors';
 
 function fetchJson(userId) {
+  const headers = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  }
+
+  const headersWithAuthorization = () => {
+    const jwt = sessionStorage.getItem('jwt');
+    return {
+      ...headers,
+      'Authorization': `Bearer: ${jwt}`
+    }
+  }
   // console.log('CALLING FETCH');
-  return fetch('/api/v1/users', { credentials: 'same-origin' })
+  return fetch('/api/v1/users', {
+    // credentials: 'same-origin',
+    method: 'GET',
+    headers: headersWithAuthorization()
+  })
+  // return fetch('/user/current_user', { credentials: 'same-origin' })
   .then(response => {
     if (!response.ok) {
 			let errorMessage = `${response.status} (${response.statusText})`, error = new Error(errorMessage);

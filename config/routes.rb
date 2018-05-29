@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   root 'pages#root'
 
-  get "/auth/:provider/callback" => "sessions#create"
-  get "/signout" => "sessions#destroy", :as => :signout
-  get "/auth/failure" => redirect('/')
+  get '/auth/:provider/callback' => 'sessions#create'
+  # get '/user/current_user' => 'sessions#get_current_user'
+  get '/signout' => 'sessions#destroy', :as => :signout
+  get '/auth/failure' => redirect('/')
 
   namespace :api do
     namespace :v1 do

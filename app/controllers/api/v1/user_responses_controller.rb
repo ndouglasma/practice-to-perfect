@@ -1,6 +1,8 @@
 require 'json'
 
-class Api::V1::UserResponsesController < ApplicationController
+# class Api::V1::UserResponsesController < ApplicationController
+class Api::V1::UserResponsesController < ApiController
+
   include AwsTranscribeHelper
   skip_before_action :verify_authenticity_token, only: [:create]
 

@@ -1,6 +1,7 @@
 require 'json'
 
-class Api::V1::MockInterviewsController < ApplicationController
+# class Api::V1::MockInterviewsController < ApplicationController
+class Api::V1::MockInterviewsController < ApiController
   include AwsTranscribeHelper
   skip_before_action :verify_authenticity_token, only: [:create]
 
